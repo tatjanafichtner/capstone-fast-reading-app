@@ -14,5 +14,6 @@ Additional versions could also contain **API fetches from a MongoDB**.
 ## Design (WHAT)
 
 First Figma draft:
+
 ![3FD5AFFF-75A6-4923-9568-5E8C4C6756FA_4_5005_c](https://user-images.githubusercontent.com/86153056/139656504-62763753-07bb-482f-af09-dd55161e4bca.jpeg)
 
