@@ -2,14 +2,14 @@
 
 
 ## Functionality (WHY)
-You can use this web app to test your reading velocity and reproduction capacity to find out if you're a slow, average or fast reader.
+You can use this **web app** to test your **reading velocity** and **reproduction capacity** to find out if you're a **slow, average or fast reader**.
 
-Additional versions could also contain an overview page to see your progress and helpful insights to get better and devour an even higher amount of beautiful books in a short period of time.
+Additional versions could also contain an **progress overview page** to see your progress and **helpful insights to get better** and devour an even higher amount of beautiful books in a short period of time.
 
 ## Tools (HOW)
-This is a **Next.js** project using **Typescript & Styled Components**
+This is a **Next.js** project using **Typescript & Styled Components**.
 
-Additional versions could also contain API fetches from a MongoDB.
+Additional versions could also contain **API fetches from a MongoDB**.
 
 ## Design (WHAT)
 
