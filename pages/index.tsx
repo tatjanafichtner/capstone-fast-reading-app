@@ -1,8 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { LinkedButton } from "./components/LinkedButton";
+import { useState } from "react";
 
-const Home: NextPage = () => {
+type HomeTypes = {
+  setStartingTime: (startingTime: number) => void;
+};
+
+const Home = ({ setStartingTime }: HomeTypes) => {
   return (
     <div>
       <Head>
@@ -18,7 +23,15 @@ const Home: NextPage = () => {
           sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
           <b>Superpower</b> <br /> <b>Hast du sie auch?</b>
         </p>
-        <LinkedButton buttonUrl={"test"}>Mach den Test</LinkedButton>
+        <LinkedButton
+          id={"start"}
+          buttonUrl={"test"}
+          content={"Mach den Test"}
+          icon={null}
+          onClick={() => {
+            setStartingTime(Date.now());
+          }}
+        />
       </main>
 
       <footer></footer>

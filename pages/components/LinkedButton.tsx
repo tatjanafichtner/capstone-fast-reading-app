@@ -1,14 +1,29 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ComponentProps, MouseEventHandler, ReactPropTypes } from "react";
 
-type ButtonURL = { buttonUrl: string; children: ReactNode };
+export type ButtonTypes = {
+  buttonUrl: string;
+  content: string;
+  icon: any;
+  id: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+};
 
-export const LinkedButton = ({ buttonUrl, children }: ButtonURL) => {
+export const LinkedButton = ({
+  buttonUrl,
+  content,
+  icon,
+  id,
+  onClick,
+}: ButtonTypes) => {
   return (
     <>
       <Link href={`/${buttonUrl}`} passHref>
-        <Button>{children}</Button>
+        <Button id={id} onClick={onClick}>
+          {content}
+          {icon}
+        </Button>
       </Link>
     </>
   );
