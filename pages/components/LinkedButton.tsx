@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { ComponentProps, MouseEventHandler, ReactPropTypes } from "react";
 
-export type ButtonTypes = {
+export type ButtonProps = {
   buttonUrl: string;
   content: string;
   icon: any;
