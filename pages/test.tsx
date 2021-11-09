@@ -1,7 +1,10 @@
 import { LinkedButton } from "./components/LinkedButton";
 import { useState } from "react";
 
-const Test = ({ setStoppingTime }) => {
+type TestProps = {
+  setStoppingTime: (stoppingTime: number) => void;
+
+const Test = ({ setStoppingTime }: TestProps) => {
   return (
     <>
       <h2>Die Küchenuhr</h2>
