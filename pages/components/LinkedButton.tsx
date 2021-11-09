@@ -5,7 +5,7 @@ import { MouseEventHandler } from "react";
 export type ButtonProps = {
   buttonUrl: string;
   content: string;
-  icon: any;
+  icon?: string;
   id: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
