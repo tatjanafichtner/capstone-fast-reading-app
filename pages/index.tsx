@@ -24,9 +24,9 @@ const Home = ({ setStartingTime }: HomeProps) => {
           <b>Superpower</b> <br /> <b>Hast du sie auch?</b>
         </p>
         <LinkedButton
-          id={"start"}
-          buttonUrl={"test"}
-          content={"Mach den Test"}
+          id="start"
+          buttonUrl="test"
+          content="Mach den Test"
           onClick={() => {
             setStartingTime(Date.now());
           }}
