@@ -16,7 +16,7 @@ export const LinkedButton = ({
   icon,
   id,
   onClick,
-}: ButtonTypes) => {
+}: ButtonProps) => {
   return (
     <>
       <Link href={`/${buttonUrl}`} passHref>
