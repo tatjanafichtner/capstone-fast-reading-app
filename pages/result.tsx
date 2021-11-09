@@ -8,7 +8,7 @@ type ResultProps = {
   seconds: number;
 };
 
-const Result = ({ minutes, seconds }: ResultTypes) => {
+const Result = ({ minutes, seconds }: ResultProps) => {
   return (
     <>
       <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
