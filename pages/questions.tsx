@@ -5,9 +5,9 @@ const Questions = () => {
     <>
       <p>question-page</p>
       <LinkedButton
-        id={"Frageseiten-Button"}
-        buttonUrl={"result"}
-        content={"Weiter zum Ergebnis"}
+        id="Frageseiten-Button"
+        buttonUrl="result"
+        content="Weiter zum Ergebnis"
         icon={null}
       />
     </>
