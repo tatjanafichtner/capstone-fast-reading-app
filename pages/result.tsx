@@ -29,7 +29,6 @@ const Result = ({ minutes, seconds }: ResultTypes) => {
         content={"Zurück zum Start"}
         icon={""}
         id={"ButtonResultPage"}
-        onClick={undefined}
       />
     </>
   );
