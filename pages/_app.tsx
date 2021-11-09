@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [stoppingTime, setStoppingTime] = useState(0);
 
   // Time specification in milliseconds, has to be converted into minutes. However, it is still a decimal value
-  // which again has to be converted into a proper hexadecimal seconds count when displayed in the result tab.
+  // which again has to be converted into a proper seconds count when displayed in the result tab.
   const calculatedTime = (stoppingTime - startingTime) / 60000;
   const minutes = Math.floor(calculatedTime);
   const seconds = Math.round(
