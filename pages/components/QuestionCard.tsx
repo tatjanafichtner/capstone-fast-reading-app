@@ -4,9 +4,16 @@ export type QuestionCardProps = {};
 
 export const QuestionCard = () => {
   return (
-    <>
-      <article></article>
-    </>
+    <article>
+      <h2>Frage 1</h2>
+      <p>Um wieviel Uhr ist die Küchenuhr stehen geblieben?</p>
+      <ul>
+        <li>Antwort 1</li>
+        <li>Antwort 2</li>
+        <li>Antwort 3</li>
+        <li>Antwort 4</li>
+      </ul>
+    </article>
   );
 };
 
