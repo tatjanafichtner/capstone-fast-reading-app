@@ -4,11 +4,15 @@ import { LinkedButton } from "./components/LinkedButton";
 
 type ResultProps = {
   calculatedTime: number;
-  minutes: number;
-  seconds: number;
+  /* Caution: as stated in the app.tsx-file, calculatedTime is a decimal value which still has to be converted 
+  for a proper display of minutes or seconds */
 };
 
-const Result = ({ minutes, seconds }: ResultProps) => {
+const Result = ({ calculatedTime }: ResultProps) => {
+  const minutes = Math.floor(calculatedTime);
+  const seconds = Math.round(
+    (calculatedTime - Math.floor(calculatedTime)) * 60
+  );
   return (
     <>
       <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>

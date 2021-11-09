@@ -9,10 +9,10 @@ export const QuestionCard = () => {
       <h2>Frage {Quiz.number}</h2>
       <p>{Quiz.question}</p>
       <ul>
-        <li>{Quiz.answers[0]}</li>
-        <li>{Quiz.answers[1]}</li>
-        <li>{Quiz.answers[2]}</li>
-        <li>{Quiz.answers[3]}</li>
+        <li>{Quiz.answers.answer[0]}</li>
+        <li>{Quiz.answers.answer[1]}</li>
+        <li>{Quiz.answers.answer[2]}</li>
+        <li>{Quiz.answers.answer[3]}</li>
       </ul>
     </article>
   );
