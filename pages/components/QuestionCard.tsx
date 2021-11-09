@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import { Quiz } from "quiz.json";
 
 export type QuestionCardProps = {};
 
 export const QuestionCard = () => {
   return (
     <article>
-      <h2>Frage 1</h2>
-      <p>Um wieviel Uhr ist die Küchenuhr stehen geblieben?</p>
+      <h2>Frage {Quiz.number}</h2>
+      <p>{Quiz.question}</p>
       <ul>
-        <li>Antwort 1</li>
-        <li>Antwort 2</li>
-        <li>Antwort 3</li>
-        <li>Antwort 4</li>
+        <li>{Quiz.answers[0]}</li>
+        <li>{Quiz.answers[1]}</li>
+        <li>{Quiz.answers[2]}</li>
+        <li>{Quiz.answers[3]}</li>
       </ul>
     </article>
   );
