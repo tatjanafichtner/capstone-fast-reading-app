@@ -1,104 +1,102 @@
-{
-  "Quiz": [
-    {
-      "number": 1,
-      "question": "Um wieviel Uhr ist die Küchenuhr stehen geblieben?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 2,
-      "question": "Wie sah die Uhr aus?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 3,
-      "question": "Wer saß mit dem Mann auf der Bank?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 4,
-      "question": "Wie alt war der Mann?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 5,
-      "question": "Was ist vor der Unterhaltung auf der Bank passiert?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 6,
-      "question": "Was beschreibt der Autor als Paradies?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 7,
-      "question": "Wie reagiert der Mann, als er darauf angesprochen wird, dass er wohl alles verloren habe?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 8,
-      "question": "Wie endet die Geschichte?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 9,
-      "question": "Wie reagieren die anderen Menschen auf der Bank, als der Mann anfängt zu sprechen?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    },
-    {
-      "number": 10,
-      "question": "Was sagt die Mutter immer, wenn der Sohn nach Hause kommt?",
-      "answers": [
-        { "answer": "Antwort 1", "isTrue": true },
-        { "answer": "Antwort 2", "isTrue": false },
-        { "answer": "Antwort 3", "isTrue": false },
-        { "answer": "Antwort 4", "isTrue": false }
-      ]
-    }
-  ]
-}
+[
+  {
+    "number": 1,
+    "question": "Um wieviel Uhr ist die Küchenuhr stehen geblieben?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 2,
+    "question": "Wie sah die Uhr aus?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 3,
+    "question": "Wer saß mit dem Mann auf der Bank?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 4,
+    "question": "Wie alt war der Mann?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 5,
+    "question": "Was ist vor der Unterhaltung auf der Bank passiert?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 6,
+    "question": "Was beschreibt der Autor als Paradies?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 7,
+    "question": "Wie reagiert der Mann, als er darauf angesprochen wird, dass er wohl alles verloren habe?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 8,
+    "question": "Wie endet die Geschichte?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 9,
+    "question": "Wie reagieren die anderen Menschen auf der Bank, als der Mann anfängt zu sprechen?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  },
+  {
+    "number": 10,
+    "question": "Was sagt die Mutter immer, wenn der Sohn nach Hause kommt?",
+    "answers": [
+      { "answer": "Antwort 1", "isTrue": true, "key": 1 },
+      { "answer": "Antwort 2", "isTrue": false, "key": 2 },
+      { "answer": "Antwort 3", "isTrue": false, "key": 3 },
+      { "answer": "Antwort 4", "isTrue": false, "key": 4 }
+    ]
+  }
+]

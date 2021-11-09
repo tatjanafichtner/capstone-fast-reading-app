@@ -1,8 +1,8 @@
 import { LinkedButton } from "./components/LinkedButton";
-import { useState } from "react";
 
 type TestProps = {
   setStoppingTime: (stoppingTime: number) => void;
+};
 
 const Test = ({ setStoppingTime }: TestProps) => {
   return (
@@ -89,7 +89,6 @@ const Test = ({ setStoppingTime }: TestProps) => {
         id="stop"
         buttonUrl="questions"
         content="Zeit stoppen"
-        icon={null}
         onClick={() => {
           setStoppingTime(Date.now());
         }}

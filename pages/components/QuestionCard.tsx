@@ -1,19 +1,24 @@
 import styled from "styled-components";
-import { Quiz } from "quiz.json";
 
-export type QuestionCardProps = {};
+export type QuestionCardProps = {
+  number: number;
+  question: string;
+  answers: { answer: string; isTrue: boolean; key: number }[];
+};
 
-export const QuestionCard = () => {
+export const QuestionCard = ({
+  number,
+  question,
+  answers,
+}: QuestionCardProps) => {
+  const renderedAnswers = answers.map(({ answer, isTrue, key }) => {
+    return <li key={key}>{answer}</li>;
+  });
   return (
     <article>
-      <h2>Frage {Quiz.number}</h2>
-      <p>{Quiz.question}</p>
-      <ul>
-        <li>{Quiz.answers.answer[0]}</li>
-        <li>{Quiz.answers.answer[1]}</li>
-        <li>{Quiz.answers.answer[2]}</li>
-        <li>{Quiz.answers.answer[3]}</li>
-      </ul>
+      <h2>Frage {number}</h2>
+      <p>{question}</p>
+      <ul>{renderedAnswers}</ul>
     </article>
   );
 };

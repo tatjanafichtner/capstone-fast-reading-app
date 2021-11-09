@@ -1,7 +1,5 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import { LinkedButton } from "./components/LinkedButton";
-import { useState } from "react";
 
 type HomeProps = {
   setStartingTime: (startingTime: number) => void;
