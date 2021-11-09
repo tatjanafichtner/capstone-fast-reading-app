@@ -7,7 +7,7 @@ type HomeProps = {
   setStartingTime: (startingTime: number) => void;
 };
 
-const Home = ({ setStartingTime }: HomeTypes) => {
+const Home = ({ setStartingTime }: HomeProps) => {
   return (
     <div>
       <Head>
