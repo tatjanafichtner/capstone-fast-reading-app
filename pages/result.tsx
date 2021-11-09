@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "./components/LinkedButton";
 
-type ResultTypes = {
+type ResultProps = {
   calculatedTime: number;
   minutes: number;
   seconds: number;
