@@ -19,7 +19,7 @@ export const LinkedButton = ({
 }: ButtonProps) => {
   return (
     <Link href={`/${buttonUrl}`} passHref>
-      <Button id={id} onClick={onClick}>
+      <ButtonLink id={id} onClick={onClick}>
         {content}
         {icon}
       </Button>
@@ -33,7 +33,7 @@ STYLING
 ########
 */
 
-const Button = styled.a`
+const ButtonLink = styled.a`
   all: unset;
   padding: 3px;
   border-radius: 50;
