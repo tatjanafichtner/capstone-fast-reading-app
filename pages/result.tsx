@@ -25,10 +25,9 @@ const Result = ({ minutes, seconds }: ResultProps) => {
       <p>Texterinnerung:</p>
       <p>Effektivgeschwindigkeit:</p>
       <LinkedButton
-        buttonUrl={""}
-        content={"Zurück zum Start"}
-        icon={""}
-        id={"ButtonResultPage"}
+        buttonUrl=""
+        content="Zurück zum Start"
+        id="ButtonResultPage"
       />
     </>
   );
