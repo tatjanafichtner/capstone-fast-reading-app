@@ -27,7 +27,6 @@ const Home = ({ setStartingTime }: HomeProps) => {
           id={"start"}
           buttonUrl={"test"}
           content={"Mach den Test"}
-          icon={null}
           onClick={() => {
             setStartingTime(Date.now());
           }}
