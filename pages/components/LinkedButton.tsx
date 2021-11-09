@@ -22,7 +22,7 @@ export const LinkedButton = ({
       <ButtonLink id={id} onClick={onClick}>
         {content}
         {icon}
-      </Button>
+      </ButtonLink>
     </Link>
   );
 };
