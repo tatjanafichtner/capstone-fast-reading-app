@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export type QuestionCardTypes = {};
+export type QuestionCardProps = {};
 
 export const QuestionCard = () => {
   return (
