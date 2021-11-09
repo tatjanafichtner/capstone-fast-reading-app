@@ -3,7 +3,7 @@ import Head from "next/head";
 import { LinkedButton } from "./components/LinkedButton";
 import { useState } from "react";
 
-type HomeTypes = {
+type HomeProps = {
   setStartingTime: (startingTime: number) => void;
 };
 
