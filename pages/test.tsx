@@ -86,9 +86,9 @@ const Test = ({ setStoppingTime }: TestProps) => {
         Paradies.
       </p>
       <LinkedButton
-        id={"stop"}
-        buttonUrl={"questions"}
-        content={"Zeit stoppen"}
+        id="stop"
+        buttonUrl="questions"
+        content="Zeit stoppen"
         icon={null}
         onClick={() => {
           setStoppingTime(Date.now());
