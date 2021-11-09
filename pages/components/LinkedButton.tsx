@@ -18,14 +18,12 @@ export const LinkedButton = ({
   onClick,
 }: ButtonProps) => {
   return (
-    <>
-      <Link href={`/${buttonUrl}`} passHref>
-        <Button id={id} onClick={onClick}>
-          {content}
-          {icon}
-        </Button>
-      </Link>
-    </>
+    <Link href={`/${buttonUrl}`} passHref>
+      <Button id={id} onClick={onClick}>
+        {content}
+        {icon}
+      </Button>
+    </Link>
   );
 };
 
