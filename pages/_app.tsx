@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState } from "react";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   /**
    * This hook measures the time between push of start and stop button on the pages
    * "Homepage" and "Test". Thus it is called in the app component.
@@ -23,6 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       setStoppingTime={setStoppingTime}
     />
   );
-}
+};
 
 export default MyApp;

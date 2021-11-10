@@ -1,32 +1,77 @@
+/*
+###########
+# IMPORTS #
+###########
+*/
 import styled from "styled-components";
+import React from "react";
+import { AnswerObject } from "../pages/questions";
+import { randomizedAnswers } from "../pages/questions";
+
+/*
+#########
+# TYPES #
+#########
+*/
 
 export type QuestionCardProps = {
-  number: number;
+  cardNumber: number;
   question: string;
-  answers: { answer: string; isTrue: boolean; key: number }[];
+  answers: { correct_answer: string; incorrect_answers: string[] }[];
+  //types from video
+  randomizedAnswers: string[];
+  callback: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  answerSelected: AnswerObject | undefined;
+  totalQuestions: number;
 };
 
-export const QuestionCard = ({
-  number,
+/*
+######################
+# QUESTION CARD CODE #
+######################
+*/
+
+export const QuestionCard: React.FC<QuestionCardProps> = ({
+  cardNumber,
   question,
   answers,
-}: QuestionCardProps) => {
-  const renderedAnswers = answers.map(({ answer, isTrue, key }) => {
-    return <li key={key}>{answer}</li>;
-  });
+  randomizedAnswers,
+  callback,
+  answerSelected,
+  totalQuestions,
+}) => {
+  // Before we display a single QuestionCard, the array of answers we collect
+  // from our JSON file needs to be rendered for every single answer in it.
+  const renderedAnswers = randomizedAnswers.map(
+    ({ answer, answerSelected }) => {
+      return (
+        <button
+          key={answer}
+          disabled={answerSelected ? true : false}
+          value={answer}
+          onClick={callback}
+        >
+          {answer}
+        </button>
+      );
+    }
+  );
+  // Then we can build the QuestionCards we want to display in the questions.tsx page
   return (
     <article>
-      <h2>Frage {number}</h2>
+      <h2>
+        Frage {cardNumber} von {totalQuestions}
+      </h2>
       <p>{question}</p>
-      <ul>{renderedAnswers}</ul>
+      <p>{renderedAnswers}</p>
     </article>
   );
 };
 
 /*
-########
-STYLING
-########
+###########
+# STYLING # 
+###########
 */
 
 const StyledCard = styled.article`

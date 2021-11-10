@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "../components/LinkedButton";
+import QuizPage from "./questions";
 
 type ResultProps = {
   calculatedTime: number;
@@ -9,10 +10,23 @@ type ResultProps = {
 };
 
 const Result = ({ calculatedTime }: ResultProps) => {
+  // Berechnungen für die Lesegeschwindigkeit
   const minutes = Math.floor(calculatedTime);
   const seconds = Math.round(
     (calculatedTime - Math.floor(calculatedTime)) * 60
   );
+
+  // Berechnungen für die Effektivgeschwindigkeit
+  // ... ergibt sich aus Prozentzahl der Lesegeschwindigkeit und
+  // ... Prozentzahl der Punktzahl der Texterinnerung
+
+  const readingPerformanceResult = () => {
+    const readingVelocity = null; // tatsächliches Ergebnis geteilt durch Maximalwert
+    const textRemembrance = score / TOTAL_Questions; // Prozentzahl der richtigen Antworten
+    const result = (readingVelocity + textRemembrance) * 0.5;
+    return result;
+  };
+
   return (
     <>
       <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
@@ -23,11 +37,13 @@ const Result = ({ calculatedTime }: ResultProps) => {
         height={200}
       />
       <p>
-        Lesegeschwindigkeit: {minutes} {minutes === 1 ? "Minute" : "Minuten"}{" "}
-        und {seconds} {seconds === 1 ? "Sekunde" : "Sekunden"}
+        Lesegeschwindigkeit: {minutes ? 0} {minutes === 1 ? "Minute" : "Minuten"}{" "}
+        und {seconds ? 0} {seconds === 1 ? "Sekunde" : "Sekunden"}
       </p>
-      <p>Texterinnerung:</p>
-      <p>Effektivgeschwindigkeit:</p>
+      <p>
+        Texterinnerung: {score ? 0} von {TOTAL_QUESTIONS}{" "}
+      </p>
+      <p>Effektivgeschwindigkeit: {readingPerformanceResult ? 0}</p>
       <LinkedButton
         buttonUrl=""
         content="Zurück zum Start"
