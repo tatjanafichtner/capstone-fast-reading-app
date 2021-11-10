@@ -1,4 +1,4 @@
-import { LinkedButton } from "./components/LinkedButton";
+import { LinkedButton } from "../components/LinkedButton";
 
 type TestProps = {
   setStoppingTime: (stoppingTime: number) => void;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { LinkedButton } from "./components/LinkedButton";
+import { LinkedButton } from "../components/LinkedButton";
 
 type ResultProps = {
   calculatedTime: number;
@@ -18,7 +18,7 @@ const Result = ({ calculatedTime }: ResultProps) => {
       <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
       <StyledImage
         alt="speed reader picture"
-        src="/Schnellleser.jpg"
+        src="/public/Schnellleser.jpg"
         width={200}
         height={200}
       />

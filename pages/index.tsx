@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { LinkedButton } from "./components/LinkedButton";
+import { LinkedButton } from "../components/LinkedButton";
 
 type HomeProps = {
   setStartingTime: (startingTime: number) => void;

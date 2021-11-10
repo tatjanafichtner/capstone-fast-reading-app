@@ -1,5 +1,5 @@
-import { LinkedButton } from "./components/LinkedButton";
-import { QuestionCard } from "./components/QuestionCard";
+import { LinkedButton } from "../components/LinkedButton";
+import { QuestionCard } from "../components/QuestionCard";
 import quiz from "../assets/quiz.json";
 
 const Questions = () => {
