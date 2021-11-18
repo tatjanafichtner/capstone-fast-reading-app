@@ -163,6 +163,7 @@ const QuizPage = ({
         totalQuestions={questions.length}
         question={question}
         answers={answers}
+        amountOfAnswers={userAnswers.length}
         // userScore={score}      // Wie bekomme ich den User Score??
         // amountOfUserAnswers={
         //   userAnswers ? userAnswers[cardNumber - 1] : undefined

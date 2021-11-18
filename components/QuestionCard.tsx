@@ -18,6 +18,7 @@ export type QuestionCardProps = {
   answers: string[];
   onSelectAnswer: (event: React.MouseEvent<HTMLButtonElement>) => void;
   totalQuestions: number;
+  amountOfAnswers: number;
 };
 
 /*
@@ -32,6 +33,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   answers,
   onSelectAnswer,
   totalQuestions,
+  amountOfAnswers,
 }) => {
   // Before we display a single QuestionCard, the array of answers we collect
   // from our JSON file needs to be rendered for every single answer in it.
@@ -39,7 +41,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
     return (
       <button
         key={answer}
-        disabled={false}
+        disabled={amountOfAnswers === cardNumber}
         value={answer}
         onClick={onSelectAnswer}
       >
@@ -49,13 +51,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   });
   // Then we can build the QuestionCards we want to display in the questions.tsx page
   return (
-    <article>
+    <StyledCard>
       <h2>
         Frage {cardNumber} von {totalQuestions}
       </h2>
       <p>{question}</p>
       <p>{renderedAnswers}</p>
-    </article>
+    </StyledCard>
   );
 };
 
@@ -65,8 +67,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 ###########
 */
 
-const StyledCard = styled.article`
-  all: unset;
+const StyledCard = styled.section`
   border-radius: 50;
   background-color: hotpink;
+  width: 30vw;
 `;
