@@ -28,7 +28,10 @@ export type QuizInputProps = {
   incorrect_answers: string[];
 };
 
+//specifies the array of questions and randomized answers of every started Quiz
 type Question = QuizInputProps & { answers: string[] };
+
+// tried to specify the score value. Didn't work.
 type Score = {
   score: number;
   setScore: (score: number) => void;
@@ -56,7 +59,11 @@ export type QuestionCard = {
 ##################
 */
 
-export const TOTAL_QUESTIONS = quiz.length; // don't know why I need to use capital letters here?
+/* 
+_____________
+Preparations
+_____________
+*/
 
 export const randomizedAnswers = (
   correct_answer: string,
@@ -72,6 +79,8 @@ _____________________________
 */
 
 const QuizPage = () => {
+  const TOTAL_QUESTIONS = quiz.length; // Delete overall
+
   /* 
   _____________
   Hooks needed
@@ -152,12 +161,12 @@ const QuizPage = () => {
   */
   const renderedCards = questions.map(
     //habe type QuestionCard definiert, kann ihn hier nicht einbinden?
-    ({ cardNumber, question, TOTAL_QUESTIONS, answers, score }) => {
+    ({ cardNumber, question, answers }) => {
       return (
         <QuestionCard
           key={cardNumber}
           cardNumber={cardNumber}
-          totalQuestions={TOTAL_QUESTIONS}
+          totalQuestions={questions.length}
           question={question}
           answers={answers}
           // userScore={score}      // Wie bekomme ich den User Score??
@@ -193,11 +202,13 @@ const QuizPage = () => {
         <button onClick={showNextQuestion}>Nächste Frage</button>
       ) : null}
 
-      <LinkedButton
-        id="Frageseiten-Button"
-        buttonUrl="result"
-        content="Weiter zum Ergebnis"
-      />
+      {gameOver && userAnswers.length !== 0 ? (
+        <LinkedButton
+          id="Frageseiten-Button"
+          buttonUrl="result"
+          content="Weiter zum Ergebnis"
+        />
+      ) : null}
     </>
   );
 };
