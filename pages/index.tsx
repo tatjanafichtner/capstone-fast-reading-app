@@ -19,7 +19,7 @@ const Home = ({ setStartingTime }: HomeProps) => {
       <main>
         <Wrapper>
           <Image
-            src="/public/pics/bluebook.svg"
+            src="/pics/bluebook.svg"
             alt="blue open book"
             width={117}
             height={117}
