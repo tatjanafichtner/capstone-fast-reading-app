@@ -1,16 +1,16 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "../components/LinkedButton";
-import QuizPage from "./questions";
-import { TOTAL_QUESTIONS } from "./questions";
 
 type ResultProps = {
-  calculatedTime: number;
   /* Caution: as stated in the app.tsx-file, calculatedTime is a decimal value which still has to be converted 
   for a proper display of minutes or seconds */
+  calculatedTime: number;
+  score: number;
+  countOfQuestions: number;
 };
 
-const Result = ({ calculatedTime, score }: ResultProps) => {
+const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
   // Berechnungen für die Lesegeschwindigkeit
   const minutes = Math.floor(calculatedTime);
   const seconds = Math.round(
@@ -23,7 +23,7 @@ const Result = ({ calculatedTime, score }: ResultProps) => {
 
   const readingPerformanceResult = () => {
     const readingVelocity = calculatedTime / 100; // tatsächliches Ergebnis geteilt durch Maximalwert (100 ist Platzhalter!)
-    const textRemembrance = score / TOTAL_QUESTIONS; // Prozentzahl der richtigen Antworten
+    const textRemembrance = score / countOfQuestions; // Prozentzahl der richtigen Antworten
     const result = (readingVelocity + textRemembrance) * 0.5;
     return result;
   };
@@ -53,7 +53,7 @@ const Result = ({ calculatedTime, score }: ResultProps) => {
           {seconds === 1 ? "Sekunde" : "Sekunden"}
         </p>
         <p>
-          Texterinnerung: {score ?? 0} von {TOTAL_QUESTIONS}{" "}
+          Texterinnerung: {score ?? 0} von {countOfQuestions}{" "}
         </p>
         <p>Effektivgeschwindigkeit: {readingPerformanceResult() ?? 0}</p>
         <LinkedButton
@@ -82,7 +82,7 @@ const Result = ({ calculatedTime, score }: ResultProps) => {
           {seconds === 1 ? "Sekunde" : "Sekunden"}
         </p>
         <p>
-          Texterinnerung: {score ?? 0} von {TOTAL_QUESTIONS}{" "}
+          Texterinnerung: {score ?? 0} von {countOfQuestions}{" "}
         </p>
         <p>Effektivgeschwindigkeit: {readingPerformanceResult ?? 0}</p>
         <LinkedButton
@@ -116,7 +116,7 @@ const Result = ({ calculatedTime, score }: ResultProps) => {
           Texterinnerung:{" "}
           <StyledResult>
             {" "}
-            {score ?? 0} von {TOTAL_QUESTIONS}{" "}
+            {score ?? 0} von {countOfQuestions}{" "}
           </StyledResult>
         </p>
         <p>

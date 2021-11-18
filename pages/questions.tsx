@@ -31,12 +31,6 @@ export type QuizInputProps = {
 //specifies the array of questions and randomized answers of every started Quiz
 type Question = QuizInputProps & { answers: string[] };
 
-// tried to specify the score value. Didn't work.
-type Score = {
-  score: number;
-  setScore: (score: number) => void;
-};
-
 // specifies what is returned when a user selects an answer on a QuestionCard
 export type UserAnswer = {
   question: string;
@@ -45,12 +39,11 @@ export type UserAnswer = {
   answerSelected: string;
 };
 
-export type QuestionCard = {
-  cardNumber: number;
-  question: string;
-  TOTAL_QUESTIONS: number;
-  answers: string[];
+export type QuizPageProps = {
   score: number;
+  addOneToScore: () => void;
+  resetScore: () => void;
+  setCountOfQuestions: (countOfQuestions: number) => void;
 };
 
 /*
@@ -78,9 +71,12 @@ This is where the quiz starts
 _____________________________
 */
 
-const QuizPage = () => {
-  const TOTAL_QUESTIONS = quiz.length; // Delete overall
-
+const QuizPage = ({
+  score,
+  addOneToScore,
+  resetScore,
+  setCountOfQuestions,
+}: QuizPageProps) => {
   /* 
   _____________
   Hooks needed
@@ -89,7 +85,6 @@ const QuizPage = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [cardNumber, setCardNumber] = useState(1);
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
-  const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
   /*
@@ -109,7 +104,8 @@ const QuizPage = () => {
       };
     });
     setQuestions(newQuestions);
-    setScore(0);
+    setCountOfQuestions(newQuestions.length);
+    resetScore();
     setUserAnswers([]);
     setCardNumber(1);
   };
@@ -127,7 +123,7 @@ const QuizPage = () => {
       const isCorrect =
         questions[cardNumber - 1].correct_answer === answerSelected;
       if (isCorrect) {
-        setScore((previous) => previous + 1);
+        addOneToScore();
       }
       // Save answer in the array for user answers
       const answerObject = {
@@ -159,25 +155,22 @@ const QuizPage = () => {
   Building of single rendered QuestionCards
   __________________________________________
   */
-  const renderedCards = questions.map(
-    //habe type QuestionCard definiert, kann ihn hier nicht einbinden?
-    ({ cardNumber, question, answers }) => {
-      return (
-        <QuestionCard
-          key={cardNumber}
-          cardNumber={cardNumber}
-          totalQuestions={questions.length}
-          question={question}
-          answers={answers}
-          // userScore={score}      // Wie bekomme ich den User Score??
-          // amountOfUserAnswers={
-          //   userAnswers ? userAnswers[cardNumber - 1] : undefined
-          // }
-          onSelectAnswer={checkAnswer}
-        />
-      );
-    }
-  );
+  const renderedCards = questions.map(({ cardNumber, question, answers }) => {
+    return (
+      <QuestionCard
+        key={cardNumber}
+        cardNumber={cardNumber}
+        totalQuestions={questions.length}
+        question={question}
+        answers={answers}
+        // userScore={score}      // Wie bekomme ich den User Score??
+        // amountOfUserAnswers={
+        //   userAnswers ? userAnswers[cardNumber - 1] : undefined
+        // }
+        onSelectAnswer={checkAnswer}
+      />
+    );
+  });
 
   /*
   _______________________________________________________________________________________
@@ -188,7 +181,7 @@ const QuizPage = () => {
     <>
       <h1>Wie gut erinnerst du dich?</h1>
 
-      {userAnswers.length === 0 ? (
+      {questions.length === 0 ? (
         <button onClick={startQuiz}>Quiz starten</button>
       ) : null}
 
@@ -198,11 +191,11 @@ const QuizPage = () => {
 
       {!gameOver &&
       userAnswers.length === cardNumber &&
-      cardNumber !== TOTAL_QUESTIONS + 1 ? (
+      cardNumber !== questions.length ? (
         <button onClick={showNextQuestion}>Nächste Frage</button>
       ) : null}
 
-      {gameOver && userAnswers.length === questions.length ? (
+      {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
         <LinkedButton
           id="Frageseiten-Button"
           buttonUrl="result"
