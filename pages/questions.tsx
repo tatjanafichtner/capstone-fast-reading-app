@@ -147,7 +147,7 @@ const QuizPage = () => {
   */
   const showNextQuestion = () => {
     const nextQuestion = cardNumber;
-    if (nextQuestion === TOTAL_QUESTIONS) {
+    if (nextQuestion === questions.length) {
       setGameOver(true);
     } else {
       setCardNumber(nextQuestion + 1);
@@ -198,11 +198,11 @@ const QuizPage = () => {
 
       {!gameOver &&
       userAnswers.length === cardNumber &&
-      cardNumber !== TOTAL_QUESTIONS - 1 ? (
+      cardNumber !== TOTAL_QUESTIONS + 1 ? (
         <button onClick={showNextQuestion}>Nächste Frage</button>
       ) : null}
 
-      {gameOver && userAnswers.length !== 0 ? (
+      {gameOver && userAnswers.length === questions.length ? (
         <LinkedButton
           id="Frageseiten-Button"
           buttonUrl="result"
