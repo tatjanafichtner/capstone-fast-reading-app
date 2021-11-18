@@ -19,16 +19,17 @@ const Home = ({ setStartingTime }: HomeProps) => {
       <main>
         <Wrapper>
           <Image
-            src="/pics/bluebook.svg"
+            src="/public/pics/bluebook.svg"
             alt="blue open book"
             width={117}
             height={117}
           />
           <h1>Wie schnell kannst du lesen?</h1>
           <p>
-            Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher und
-            kann sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
-            <b>Superpower</b> <br /> <b>Hast du sie auch?</b>
+            Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher <br />
+            und kann sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
+            <b>Superpower</b> <br /> <br /> <b>Hast du sie auch?</b> <br />{" "}
+            <br />
           </p>
           <LinkedButton
             id="start"
