@@ -35,9 +35,11 @@ STYLING
 
 const ButtonLink = styled.a`
   all: unset;
-  padding: 3px;
-  border-radius: 50;
-  width: 1rem;
-  background-color: hotpink;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: var(--custom-color-blue);
+  color: var(--custom-color-white);
+  font-family: "Amatic SC";
+  font-size: 30px;
   cursor: pointer;
 `;

@@ -24,18 +24,30 @@ import { shuffleAnswerArray } from "../utils/shuffle.js";
 export type QuizInputProps = {
   cardNumber: number;
   question: string;
-  answers: any[]; // not true, is it? Could it be more specified?
   correct_answer: string;
   incorrect_answers: string[];
-  key: number;
+};
+
+type Question = QuizInputProps & { answers: string[] };
+type Score = {
+  score: number;
+  setScore: (score: number) => void;
 };
 
 // specifies what is returned when a user selects an answer on a QuestionCard
-export type AnswerObjectProps = {
+export type UserAnswer = {
   question: string;
-  answer: string;
-  correctAnswer: boolean;
-  correctAnswerName: string;
+  correctAnswer: string;
+  isCorrect: boolean;
+  answerSelected: string;
+};
+
+export type QuestionCard = {
+  cardNumber: number;
+  question: string;
+  TOTAL_QUESTIONS: number;
+  answers: string[];
+  score: number;
 };
 
 /*
@@ -44,10 +56,13 @@ export type AnswerObjectProps = {
 ##################
 */
 
-const TOTAL_QUESTIONS = quiz.length; // don't know why I need to use capital letters here?
+export const TOTAL_QUESTIONS = quiz.length; // don't know why I need to use capital letters here?
 
-export const randomizedAnswers = ({ answers }: QuizInputProps) => {
-  shuffleAnswerArray([...answers.incorrect_answers, answers.correct_answer]);
+export const randomizedAnswers = (
+  correct_answer: string,
+  incorrect_answers: string[]
+) => {
+  return shuffleAnswerArray([...incorrect_answers, correct_answer]) as string[];
 };
 
 /* 
@@ -55,17 +70,16 @@ _____________________________
 This is where the quiz starts
 _____________________________
 */
+
 const QuizPage = () => {
   /* 
   _____________
   Hooks needed
   _____________
   */
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [cardNumber, setCardNumber] = useState(1);
-  const [amountOfUserAnswers, setAmountOfUserAnswers] = useState<
-    AnswerObject[]
-  >([]);
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
@@ -74,12 +88,20 @@ const QuizPage = () => {
   Starting function
   __________________
   */
-  const startQuiz = ({ question }: AnswerObjectProps) => {
+  const startQuiz = () => {
     setGameOver(false);
-    const newQuestion = [...(question + randomizedAnswers)];
-    setQuestions(newQuestion);
+    const newQuestions = quiz.map((question) => {
+      return {
+        ...question,
+        answers: randomizedAnswers(
+          question.correct_answer,
+          question.incorrect_answers
+        ),
+      };
+    });
+    setQuestions(newQuestions);
     setScore(0);
-    setAmountOfUserAnswers([]);
+    setUserAnswers([]);
     setCardNumber(0);
   };
 
@@ -100,12 +122,12 @@ const QuizPage = () => {
       }
       // Save answer in the array for user answers
       const answerObject = {
-        questions: questions[cardNumber - 1].question,
+        question: questions[cardNumber - 1].question,
         answerSelected,
         isCorrect,
         correctAnswer: questions[cardNumber - 1].correct_answer,
       };
-      setAmountOfUserAnswers((previous) => [...previous, answerObject]);
+      setUserAnswers((previous) => [...previous, answerObject]);
     }
   };
 
@@ -128,21 +150,25 @@ const QuizPage = () => {
   Building of single rendered QuestionCards
   __________________________________________
   */
-  const renderedCards = quiz.map(({ cardNumber, question }) => {
-    return (
-      <QuestionCard
-        key={cardNumber}
-        cardNumber={cardNumber}
-        totalQuestions={TOTAL_QUESTIONS}
-        question={question}
-        answers={randomizedAnswers}
-        amountOfUserAnswers={
-          amountOfUserAnswers ? amountOfUserAnswers[cardNumber - 1] : undefined
-        }
-        callback={checkAnswer}
-      />
-    );
-  });
+  const renderedCards = questions.map(
+    //habe type QuestionCard definiert, kann ihn hier nicht einbinden?
+    ({ cardNumber, question, TOTAL_QUESTIONS, answers, score }) => {
+      return (
+        <QuestionCard
+          key={cardNumber}
+          cardNumber={cardNumber}
+          totalQuestions={TOTAL_QUESTIONS}
+          question={question}
+          answers={answers}
+          // userScore={score}      // Wie bekomme ich den User Score??
+          // amountOfUserAnswers={
+          //   userAnswers ? userAnswers[cardNumber - 1] : undefined
+          // }
+          onSelectAnswer={checkAnswer}
+        />
+      );
+    }
+  );
 
   /*
   _______________________________________________________________________________________
@@ -153,16 +179,16 @@ const QuizPage = () => {
     <>
       <h1>Wie gut erinnerst du dich?</h1>
 
-      {gameOver || amountOfUserAnswers.length === TOTAL_QUESTIONS ? (
+      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <button onClick={startQuiz}>Quiz starten</button>
       ) : null}
 
       {!gameOver ? <p>Punktzahl: {score}</p> : null}
 
-      {!gameOver ? { renderedCards } : null}
+      {!gameOver ? renderedCards[cardNumber - 1] : null}
 
       {!gameOver &&
-      amountOfUserAnswers.length === cardNumber &&
+      userAnswers.length === cardNumber &&
       cardNumber !== TOTAL_QUESTIONS - 1 ? (
         <button onClick={showNextQuestion}>Nächste Frage</button>
       ) : null}

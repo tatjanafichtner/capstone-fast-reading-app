@@ -19,6 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <Component
       {...pageProps}
       calculatedTime={calculatedTime}
+      // score={score}
       setStartingTime={setStartingTime}
       setStoppingTime={setStoppingTime}
     />

@@ -2,141 +2,61 @@
   {
     "cardNumber": 1,
     "question": "Um wieviel Uhr ist die Küchenuhr stehen geblieben?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 2,
     "question": "Wie sah die Uhr aus?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 3,
     "question": "Wer saß mit dem Mann auf der Bank?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 4,
     "question": "Wie alt war der Mann?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 5,
     "question": "Was ist vor der Unterhaltung auf der Bank passiert?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 6,
     "question": "Was beschreibt der Autor als Paradies?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 7,
     "question": "Wie reagiert der Mann, als er darauf angesprochen wird, dass er wohl alles verloren habe?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 8,
     "question": "Wie endet die Geschichte?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 9,
     "question": "Wie reagieren die anderen Menschen auf der Bank, als der Mann anfängt zu sprechen?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   },
   {
     "cardNumber": 10,
     "question": "Was sagt die Mutter immer, wenn der Sohn nach Hause kommt?",
-    "answers": [
-      { "correct_answer": "Antwort 1" },
-      {
-        "incorrect_answers": [
-          { "answer": "Antwort 2" },
-          { "answer": "Antwort 3" },
-          { "answer": "Antwort 4" }
-        ]
-      }
-    ]
+    "correct_answer": "Antwort 1",
+    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   }
 ]

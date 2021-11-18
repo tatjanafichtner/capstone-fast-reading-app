@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { LinkedButton } from "../components/LinkedButton";
+import styled from "styled-components";
+import Image from "next/image";
 
 type HomeProps = {
   setStartingTime: (startingTime: number) => void;
@@ -15,25 +17,53 @@ const Home = ({ setStartingTime }: HomeProps) => {
       </Head>
 
       <main>
-        <h1>Wie schnell kannst du lesen?</h1>
-        <p>
-          Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher und kann
-          sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
-          <b>Superpower</b> <br /> <b>Hast du sie auch?</b>
-        </p>
-        <LinkedButton
-          id="start"
-          buttonUrl="test"
-          content="Mach den Test"
-          onClick={() => {
-            setStartingTime(Date.now());
-          }}
-        />
+        <Wrapper>
+          <Image
+            src="/pics/bluebook.svg"
+            alt="blue open book"
+            width={117}
+            height={117}
+          />
+          <h1>Wie schnell kannst du lesen?</h1>
+          <p>
+            Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher und
+            kann sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
+            <b>Superpower</b> <br /> <b>Hast du sie auch?</b>
+          </p>
+          <LinkedButton
+            id="start"
+            buttonUrl="test"
+            content="Mach den Test"
+            onClick={() => {
+              setStartingTime(Date.now());
+            }}
+          />
+          <Image
+            src="/pics/bookstack.svg"
+            alt="stack of colourful books"
+            width={287}
+            height={295}
+          />
+        </Wrapper>
       </main>
 
       <footer></footer>
     </div>
   );
 };
+
+/*
+########
+STYLING
+########
+*/
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
 
 export default Home;
