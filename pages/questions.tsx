@@ -111,7 +111,7 @@ const QuizPage = () => {
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
-    setCardNumber(0);
+    setCardNumber(1);
   };
 
   /*
