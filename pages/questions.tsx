@@ -188,7 +188,7 @@ const QuizPage = () => {
     <>
       <h1>Wie gut erinnerst du dich?</h1>
 
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+      {userAnswers.length === 0 ? (
         <button onClick={startQuiz}>Quiz starten</button>
       ) : null}
 
