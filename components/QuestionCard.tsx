@@ -39,14 +39,17 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   // from our JSON file needs to be rendered for every single answer in it.
   const renderedAnswers = answers.map((answer) => {
     return (
-      <button
-        key={answer}
-        disabled={amountOfAnswers === cardNumber}
-        value={answer}
-        onClick={onSelectAnswer}
-      >
-        {answer}
-      </button>
+      <>
+        <br />
+        <StyledButton
+          key={answer}
+          disabled={amountOfAnswers === cardNumber}
+          value={answer}
+          onClick={onSelectAnswer}
+        >
+          {answer}
+        </StyledButton>
+      </>
     );
   });
   // Then we can build the QuestionCards we want to display in the questions.tsx page
@@ -67,8 +70,12 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 ###########
 */
 
-const StyledCard = styled.section`
-  border-radius: 50;
-  background-color: hotpink;
-  width: 30vw;
+const StyledCard = styled.article`
+  display: block;
+  width: 75vw;
+  height: auto;
+  border-radius: 13px;
+  background-color: rgba(250, 236, 156, 0.53);
 `;
+
+const StyledButton = styled.button``;

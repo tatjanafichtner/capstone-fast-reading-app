@@ -9,7 +9,7 @@ type HomeProps = {
 
 const Home = ({ setStartingTime }: HomeProps) => {
   return (
-    <div>
+    <>
       <Head>
         <title>A fast reading test app</title>
         <meta name="description" content="A fast reading test app" />
@@ -47,9 +47,7 @@ const Home = ({ setStartingTime }: HomeProps) => {
           />
         </Wrapper>
       </main>
-
-      <footer></footer>
-    </div>
+    </>
   );
 };
 
@@ -60,6 +58,7 @@ STYLING
 */
 
 const Wrapper = styled.div`
+  padding: 1rem;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;

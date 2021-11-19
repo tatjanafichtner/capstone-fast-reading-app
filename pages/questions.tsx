@@ -13,6 +13,7 @@ import { QuestionCard } from "../components/QuestionCard";
 import quiz from "../assets/quiz.json";
 //Utils
 import { shuffleAnswerArray } from "../utils/shuffle.js";
+import styled from "styled-components";
 
 /*
 #########
@@ -179,23 +180,18 @@ const QuizPage = ({
   _______________________________________________________________________________________
   */
   return (
-    <>
+    <Wrapper1 data-BrokenWrapper="Quiz-Page-Wrapper">
       <h1>Wie gut erinnerst du dich?</h1>
-
       {questions.length === 0 ? (
         <button onClick={startQuiz}>Quiz starten</button>
       ) : null}
-
       {!gameOver ? <p>Punktzahl: {score}</p> : null}
-
       {!gameOver ? renderedCards[cardNumber - 1] : null}
-
       {!gameOver &&
       userAnswers.length === cardNumber &&
       cardNumber !== questions.length ? (
         <button onClick={showNextQuestion}>Nächste Frage</button>
       ) : null}
-
       {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
         <LinkedButton
           id="Frageseiten-Button"
@@ -203,8 +199,17 @@ const QuizPage = ({
           content="Weiter zum Ergebnis"
         />
       ) : null}
-    </>
+    </Wrapper1>
   );
 };
+
+const Wrapper1 = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 5px dotted green;
+`;
 
 export default QuizPage;

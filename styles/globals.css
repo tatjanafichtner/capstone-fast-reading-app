@@ -10,17 +10,18 @@
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
   background-color: var(--custom-color-white);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-size: 20px;
 }
 
-html,
-body {
-  padding: 0;
-  margin: 1vw;
-}
 h1,
 h2 {
   font-family: "Amatic SC";
@@ -28,11 +29,15 @@ h2 {
   font-size: 40px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 p {
   color: var(--custom-color-grey);
+}
+
+.Quiz-Page-Wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 5px dotted green;
 }
