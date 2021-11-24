@@ -6,6 +6,7 @@
 import styled from "styled-components";
 import React from "react";
 import Image from "next/image";
+import { UserAnswer } from "../pages/questions";
 
 /*
 #########
@@ -20,6 +21,7 @@ export type QuestionCardProps = {
   onSelectAnswer: (event: React.MouseEvent<HTMLButtonElement>) => void;
   totalQuestions: number;
   amountOfAnswers: number;
+  userAnswer?: UserAnswer;
 };
 
 /*
@@ -35,17 +37,26 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   onSelectAnswer,
   totalQuestions,
   amountOfAnswers,
+  userAnswer,
 }) => {
+  console.log("userAnswer ", userAnswer);
   // Before we display a single QuestionCard, the array of answers we collect
   // from our JSON file needs to be rendered for every single answer in it.
   const renderedAnswers = answers.map((answer) => {
     return (
       <>
         <StyledButton
-          key={answer}
+          key={cardNumber}
           disabled={amountOfAnswers === cardNumber}
           value={answer}
           onClick={onSelectAnswer}
+          className={
+            answer === userAnswer?.correctAnswer
+              ? "animate__animated animate__flash"
+              : ""
+          }
+          showAsCorrect={answer === userAnswer?.correctAnswer}
+          showAsSelected={answer === userAnswer?.answerSelected}
         >
           {answer}
         </StyledButton>
@@ -54,7 +65,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   });
   // Then we can build the QuestionCards we want to display in the questions.tsx page
   return (
-    <StyledCard>
+    <StyledCard className="animate__animated animate__backInRight">
       <TitleContainer>
         <Image
           alt="books in a row"
@@ -80,7 +91,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 ###########
 */
 
-/* Neu: Alles ab Zeile 79 */
 const StyledCard = styled.article`
   display: flex;
   flex-direction: column;
@@ -105,10 +115,18 @@ const StyledCard = styled.article`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{
+  showAsCorrect: boolean;
+  showAsSelected: boolean;
+}>`
   border: none;
   border-radius: 10px;
-  background: var(--custom-color-blue);
+  background: ${(props) =>
+    props.showAsCorrect
+      ? "var(--custom-color-green)"
+      : props.showAsSelected
+      ? "var(--custom-color-orange)"
+      : "var(--custom-color-blue)"};
   color: var(--custom-color-grey);
   padding: 0.3rem;
   text-align: left;

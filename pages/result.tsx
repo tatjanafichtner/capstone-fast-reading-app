@@ -2,24 +2,17 @@ import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "../components/LinkedButton";
 import { ButtonIcon } from "../components/ButtonIcon";
+import ConfettiGenerator from "confetti-js";
+import { MutableRefObject, useEffect, useRef } from "react";
 
 type ResultProps = {
-  /* Caution: as stated in the app.tsx-file, calculatedTime is a decimal value which still has to be converted 
-  for a proper display of minutes or seconds */
   calculatedTime: number;
   score: number;
   countOfQuestions: number;
 };
 
 const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
-  // Berechnungen für die Lesegeschwindigkeit
-  const minutes = Math.round(calculatedTime) * 60;
-
-  // Berechnungen für die Effektivgeschwindigkeit
-  // ... ergibt sich aus Prozentzahl der Lesegeschwindigkeit und
-  // ... Prozentzahl der Punktzahl der Texterinnerung
-
-  const readingVelocity = 921 / minutes;
+  const readingVelocity = (921 / calculatedTime).toFixed(0);
   const textRemembrance = (score * 100) / countOfQuestions;
   const result = (readingVelocity * textRemembrance) / 100;
 
@@ -32,9 +25,24 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
   const minimumValueSpeedReader = 200;
   const minimumValueMediumReader = 100;
 
-  if (result > minimumValueSpeedReader) {
+  const isSuccessful = true;
+
+  const canvasRef = useRef<MutableRefObject<HTMLCanvasElement>>();
+
+  useEffect(() => {
+    if (isSuccessful) {
+      const confettiSettings = { target: canvasRef.current };
+      const confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+
+      return () => confetti.clear();
+    }
+  }, [isSuccessful]);
+
+  if (isSuccessful) {
     return (
       <>
+        <StyledCanvas ref={canvasRef as any} />
         <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
         <StyledImage
           alt="speed reader picture"
@@ -42,6 +50,7 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           width={300}
           height={300}
         />
+
         <p>
           Lesegeschwindigkeit:{" "}
           <StyledResult>{readingVelocity ?? 0} Wörter pro Minute</StyledResult>
@@ -173,4 +182,14 @@ const StyledImage = styled(Image)`
 const StyledResult = styled.em`
   color: var(--custom-color-green);
   font-style: normal;
+`;
+
+const StyledCanvas = styled.canvas`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  pointer-events: none;
 `;

@@ -15,6 +15,7 @@ import quiz from "../assets/quiz.json";
 //Utils
 import { shuffleAnswerArray } from "../utils/shuffle.js";
 import styled from "styled-components";
+import "animate.css";
 
 /*
 #########
@@ -46,6 +47,7 @@ export type QuizPageProps = {
   addOneToScore: () => void;
   resetScore: () => void;
   setCountOfQuestions: (countOfQuestions: number) => void;
+  setAnimation: (animation: string) => void;
 };
 
 /*
@@ -78,6 +80,7 @@ const QuizPage = ({
   addOneToScore,
   resetScore,
   setCountOfQuestions,
+  setAnimation,
 }: QuizPageProps) => {
   /* 
   _____________
@@ -126,6 +129,7 @@ const QuizPage = ({
         questions[cardNumber - 1].correct_answer === answerSelected;
       if (isCorrect) {
         addOneToScore();
+        setAnimation("animate__animated animate__flash correct");
       }
       // Save answer in the array for user answers
       const answerObject = {
@@ -157,19 +161,22 @@ const QuizPage = ({
   Building of single rendered QuestionCards
   __________________________________________
   */
-  const renderedCards = questions.map(({ cardNumber, question, answers }) => {
-    return (
-      <QuestionCard
-        key={cardNumber}
-        cardNumber={cardNumber}
-        totalQuestions={questions.length}
-        question={question}
-        answers={answers}
-        amountOfAnswers={userAnswers.length}
-        onSelectAnswer={checkAnswer}
-      />
-    );
-  });
+  const renderedCards = questions.map(
+    ({ cardNumber, question, answers }, index) => {
+      return (
+        <QuestionCard
+          key={cardNumber}
+          cardNumber={cardNumber}
+          totalQuestions={questions.length}
+          question={question}
+          answers={answers}
+          amountOfAnswers={userAnswers.length}
+          onSelectAnswer={checkAnswer}
+          userAnswer={userAnswers[index]}
+        />
+      );
+    }
+  );
 
   /*
   _______________________________________________________________________________________

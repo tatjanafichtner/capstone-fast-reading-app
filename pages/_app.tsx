@@ -11,6 +11,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const [startingTime, setStartingTime] = useState(0);
   const [stoppingTime, setStoppingTime] = useState(0);
   const [countOfQuestions, setCountOfQuestions] = useState(0);
+  const [animation, setAnimation] = useState("");
 
   const [score, setScore] = useState(0);
 
@@ -37,6 +38,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       resetScore={resetScore}
       countOfQuestions={countOfQuestions}
       setCountOfQuestions={setCountOfQuestions}
+      animation={animation}
+      setAnimation={setAnimation}
     />
   );
 };
