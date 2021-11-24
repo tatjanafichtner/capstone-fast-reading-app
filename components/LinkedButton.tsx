@@ -5,7 +5,8 @@ import { MouseEventHandler } from "react";
 export type ButtonProps = {
   buttonUrl: string;
   content: string;
-  icon?: string;
+  elementBefore?: any;
+  elementAfter?: any;
   id: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
@@ -13,15 +14,17 @@ export type ButtonProps = {
 export const LinkedButton = ({
   buttonUrl,
   content,
-  icon,
+  elementBefore,
+  elementAfter,
   id,
   onClick,
 }: ButtonProps) => {
   return (
     <Link href={`/${buttonUrl}`} passHref>
       <ButtonLink id={id} onClick={onClick}>
+        {elementBefore}
         {content}
-        {icon}
+        {elementAfter}
       </ButtonLink>
     </Link>
   );
