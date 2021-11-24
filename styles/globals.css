@@ -33,11 +33,22 @@ p {
   color: var(--custom-color-grey);
 }
 
-.Quiz-Page-Wrapper {
+.quiz-page-wrapper {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border: 5px dotted green;
+}
+
+.book-stack {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+
+.flying-book {
+  position: fixed;
+  top: 20px;
+  right: 0px;
 }

@@ -9,6 +9,7 @@ import { useState } from "react";
 //Components
 import { LinkedButton } from "../components/LinkedButton";
 import { QuestionCard } from "../components/QuestionCard";
+import { ButtonIcon } from "../components/ButtonIcon";
 //Assets (JSON)
 import quiz from "../assets/quiz.json";
 //Utils
@@ -165,10 +166,6 @@ const QuizPage = ({
         question={question}
         answers={answers}
         amountOfAnswers={userAnswers.length}
-        // userScore={score}      // Wie bekomme ich den User Score??
-        // amountOfUserAnswers={
-        //   userAnswers ? userAnswers[cardNumber - 1] : undefined
-        // }
         onSelectAnswer={checkAnswer}
       />
     );
@@ -180,17 +177,17 @@ const QuizPage = ({
   _______________________________________________________________________________________
   */
   return (
-    <Wrapper1 data-BrokenWrapper="Quiz-Page-Wrapper">
+    <div className="quiz-page-wrapper">
       <h1>Wie gut erinnerst du dich?</h1>
       {questions.length === 0 ? (
-        <button onClick={startQuiz}>Quiz starten</button>
+        <StyledButton onClick={startQuiz}>Quiz starten</StyledButton>
       ) : null}
       {!gameOver ? <p>Punktzahl: {score}</p> : null}
       {!gameOver ? renderedCards[cardNumber - 1] : null}
       {!gameOver &&
       userAnswers.length === cardNumber &&
       cardNumber !== questions.length ? (
-        <button onClick={showNextQuestion}>Nächste Frage</button>
+        <StyledButton onClick={showNextQuestion}>Nächste Frage</StyledButton>
       ) : null}
       {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
         <LinkedButton
@@ -199,17 +196,19 @@ const QuizPage = ({
           content="Weiter zum Ergebnis"
         />
       ) : null}
-    </Wrapper1>
+    </div>
   );
 };
 
-const Wrapper1 = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  border: 5px dotted green;
+const StyledButton = styled.button`
+  all: unset;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: var(--custom-color-blue);
+  color: var(--custom-color-white);
+  font-family: "Amatic SC";
+  font-size: 30px;
+  cursor: pointer;
 `;
 
 export default QuizPage;
