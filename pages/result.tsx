@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "../components/LinkedButton";
+import { ButtonIcon } from "../components/ButtonIcon";
 
 type ResultProps = {
   /* Caution: as stated in the app.tsx-file, calculatedTime is a decimal value which still has to be converted 
@@ -12,21 +13,15 @@ type ResultProps = {
 
 const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
   // Berechnungen für die Lesegeschwindigkeit
-  const minutes = Math.floor(calculatedTime);
-  const seconds = Math.round(
-    (calculatedTime - Math.floor(calculatedTime)) * 60
-  );
+  const minutes = Math.round(calculatedTime) * 60;
 
   // Berechnungen für die Effektivgeschwindigkeit
   // ... ergibt sich aus Prozentzahl der Lesegeschwindigkeit und
   // ... Prozentzahl der Punktzahl der Texterinnerung
 
-  const readingPerformanceResult = () => {
-    const readingVelocity = calculatedTime / 100; // tatsächliches Ergebnis geteilt durch Maximalwert (100 ist Platzhalter!)
-    const textRemembrance = score / countOfQuestions; // Prozentzahl der richtigen Antworten
-    const result = (readingVelocity + textRemembrance) * 0.5;
-    return result;
-  };
+  const readingVelocity = 921 / minutes;
+  const textRemembrance = (score * 100) / countOfQuestions;
+  const result = (readingVelocity * textRemembrance) / 100;
 
   /*
   _____________________________________________________________
@@ -34,36 +29,46 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
   _____________________________________________________________
   */
 
-  const minimumValueSpeedReader = 80; // TO BE DEFINED!
-  const minimumValueMediumReader = 20; // TO BE DEFINED!
+  const minimumValueSpeedReader = 200;
+  const minimumValueMediumReader = 100;
 
-  if (readingPerformanceResult() > minimumValueSpeedReader) {
+  if (result > minimumValueSpeedReader) {
     return (
       <>
         <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
         <StyledImage
           alt="speed reader picture"
-          src="/public/Schnellleser.jpg"
-          width={200}
-          height={200}
+          src="/pics/Schnellleser.jpg"
+          width={300}
+          height={300}
         />
         <p>
-          Lesegeschwindigkeit: {minutes ?? 0}{" "}
-          {minutes === 1 ? "Minute" : "Minuten"} und {seconds ?? 0}{" "}
-          {seconds === 1 ? "Sekunde" : "Sekunden"}
+          Lesegeschwindigkeit:{" "}
+          <StyledResult>{readingVelocity ?? 0} Wörter pro Minute</StyledResult>
         </p>
         <p>
-          Texterinnerung: {score ?? 0} von {countOfQuestions}{" "}
+          Texterinnerung:{" "}
+          <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
         </p>
-        <p>Effektivgeschwindigkeit: {readingPerformanceResult() ?? 0}</p>
+        <p>
+          Effektivgeschwindigkeit: <StyledResult>{result ?? 0}</StyledResult>
+        </p>
         <LinkedButton
           buttonUrl=""
           content="Zurück zum Start"
           id="ButtonResultPage"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/return-icon.svg"}
+              description={"return icon"}
+              width={30}
+              height={30}
+            />
+          }
         />
       </>
     );
-  } else if (readingPerformanceResult() > minimumValueMediumReader) {
+  } else if (result > minimumValueMediumReader) {
     return (
       <>
         <h1>
@@ -73,62 +78,76 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         <StyledImage
           alt="medium reader picture"
           src="/pics/Durchschnittsleser.jpg"
-          width={200}
-          height={200}
+          width={300}
+          height={300}
         />
         <p>
-          Lesegeschwindigkeit: {minutes ?? 0}{" "}
-          {minutes === 1 ? "Minute" : "Minuten"} und {seconds ?? 0}{" "}
-          {seconds === 1 ? "Sekunde" : "Sekunden"}
+          Lesegeschwindigkeit:{" "}
+          <StyledResult>{readingVelocity} Wörter pro Minute</StyledResult>
         </p>
         <p>
-          Texterinnerung: {score ?? 0} von {countOfQuestions}{" "}
+          Texterinnerung:{" "}
+          <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
         </p>
-        <p>Effektivgeschwindigkeit: {readingPerformanceResult ?? 0}</p>
+        <p>
+          Effektivgeschwindigkeit: <StyledResult>{result ?? 0}</StyledResult>
+        </p>
         <LinkedButton
           buttonUrl=""
           content="Zurück zum Start"
           id="ButtonResultPage"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/return-icon.svg"}
+              description={"return icon"}
+              width={30}
+              height={30}
+            />
+          }
         />
       </>
     );
   } else {
     return (
-      <>
+      <StyledPage>
         <h1>
-          Na, da geht noch was! <br />
-          Weiter so, und du schaffst die Durchschnittsgeschwindigkeit.
+          Na, da geht noch was! <br /> Du liest langsamer als der Durchschnitt.{" "}
+          <br />
         </h1>
         <StyledImage
           alt="slow reader picture"
           src="/pics/LangsamerLeser.jpg"
-          width={200}
-          height={200}
+          width={300}
+          height={300}
         />
         <p>
           Lesegeschwindigkeit:{" "}
-          <StyledResult>
-            {minutes ?? 0} {minutes === 1 ? "Minute" : "Minuten"} und{" "}
-            {seconds ?? 0} {seconds === 1 ? "Sekunde" : "Sekunden"}{" "}
-          </StyledResult>
+          <StyledResult>{readingVelocity} Wörter pro Minute</StyledResult>
         </p>
         <p>
           Texterinnerung:{" "}
-          <StyledResult>
-            {" "}
-            {score ?? 0} von {countOfQuestions}{" "}
-          </StyledResult>
+          <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
         </p>
         <p>
-          Effektivgeschwindigkeit:{" "}
-          <StyledResult> {readingPerformanceResult ?? 0}</StyledResult>
+          Effektivgeschwindigkeit: <StyledResult>{result ?? 0}</StyledResult>
+        </p>
+        <p>
+          Effektivgeschwindigkeit: <StyledResult> {result ?? 0}</StyledResult>
         </p>
         <LinkedButton
           buttonUrl=""
           content="Zurück zum Start"
           id="ButtonResultPage"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/return-icon.svg"}
+              description={"return icon"}
+              width={30}
+              height={30}
+            />
+          }
         />
-      </>
+      </StyledPage>
     );
   }
 };
@@ -141,8 +160,14 @@ STYLING
 ########
 */
 
+const StyledPage = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+`;
+
 const StyledImage = styled(Image)`
-  border-radius: 100px;
+  border-radius: 50%;
 `;
 
 const StyledResult = styled.em`
