@@ -5,6 +5,7 @@
 */
 import styled from "styled-components";
 import React from "react";
+import Image from "next/image";
 
 /*
 #########
@@ -40,7 +41,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   const renderedAnswers = answers.map((answer) => {
     return (
       <>
-        <br />
         <StyledButton
           key={answer}
           disabled={amountOfAnswers === cardNumber}
@@ -55,11 +55,21 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   // Then we can build the QuestionCards we want to display in the questions.tsx page
   return (
     <StyledCard>
-      <h2>
-        Frage {cardNumber} von {totalQuestions}
-      </h2>
+      <TitleContainer>
+        <Image
+          alt="books in a row"
+          className="row-of-books"
+          src="/pics/rowofbooks.svg"
+          height={40}
+          width={40}
+        />
+
+        <h2>
+          Frage {cardNumber} von {totalQuestions}
+        </h2>
+      </TitleContainer>
       <p>{question}</p>
-      <p>{renderedAnswers}</p>
+      <div>{renderedAnswers}</div>
     </StyledCard>
   );
 };
@@ -70,12 +80,43 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 ###########
 */
 
+/* Neu: Alles ab Zeile 79 */
 const StyledCard = styled.article`
-  display: block;
-  width: 75vw;
-  height: auto;
-  border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  border-radius: 10px;
   background-color: rgba(250, 236, 156, 0.53);
+  padding: 1rem;
+  margin: 0;
+  min-width: 75vw;
+  & h2 {
+    margin: 0 !important;
+  }
+  & p {
+    margin: 0.5rem 0 0 0;
+  }
+  & div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    width: 50%;
+    gap: 0.5rem;
+  }
 `;
 
-const StyledButton = styled.button``;
+const StyledButton = styled.button`
+  border: none;
+  border-radius: 10px;
+  background: var(--custom-color-blue);
+  color: var(--custom-color-grey);
+  padding: 0.3rem;
+  text-align: left;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  margin: 0;
+`;
