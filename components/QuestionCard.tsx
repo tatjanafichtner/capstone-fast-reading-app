@@ -69,6 +69,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 const StyledCard = styled.article`
   margin: 1rem;
   padding: 2rem;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   max-width: 80%;
