@@ -1,18 +1,7 @@
-/*
-###########
-# IMPORTS #
-###########
-*/
 import styled from "styled-components";
 import React from "react";
 import Image from "next/image";
 import { UserAnswer } from "../pages/questions";
-
-/*
-#########
-# TYPES #
-#########
-*/
 
 export type QuestionCardProps = {
   cardNumber: number;
@@ -24,12 +13,6 @@ export type QuestionCardProps = {
   userAnswer?: UserAnswer;
 };
 
-/*
-######################
-# QUESTION CARD CODE #
-######################
-*/
-
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   cardNumber,
   question,
@@ -40,8 +23,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   userAnswer,
 }) => {
   console.log("userAnswer ", userAnswer);
-  // Before we display a single QuestionCard, the array of answers we collect
-  // from our JSON file needs to be rendered for every single answer in it.
+
   const renderedAnswers = answers.map((answer) => {
     return (
       <>
@@ -63,7 +45,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       </>
     );
   });
-  // Then we can build the QuestionCards we want to display in the questions.tsx page
   return (
     <StyledCard className="animate__animated animate__backInRight">
       <TitleContainer>
@@ -85,21 +66,18 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   );
 };
 
-/*
-###########
-# STYLING # 
-###########
-*/
-
 const StyledCard = styled.article`
+  margin: 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   max-width: 80%;
   border-radius: 10px;
   background-color: rgba(250, 236, 156, 0.53);
-  padding: 1rem;
-  margin: 0;
-  min-width: 75vw;
+  width: fit-content;
+  text-align: left;
+  justify-content: left;
+  float: left;
   & h2 {
     margin: 0 !important;
   }
@@ -119,6 +97,7 @@ const StyledButton = styled.button<{
   showAsCorrect: boolean;
   showAsSelected: boolean;
 }>`
+  float: left;
   border: none;
   border-radius: 10px;
   background: ${(props) =>
