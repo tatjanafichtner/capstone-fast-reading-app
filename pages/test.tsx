@@ -1,4 +1,5 @@
 import { LinkedButton } from "../components/LinkedButton";
+import { ButtonIcon } from "../components/ButtonIcon";
 import styled from "styled-components";
 
 type TestProps = {
@@ -116,6 +117,14 @@ const Test = ({ setStoppingTime }: TestProps) => {
           onClick={() => {
             setStoppingTime(Date.now());
           }}
+          elementBefore={
+            <ButtonIcon
+              source={"/pics/stop-time.svg"}
+              description={"forward icon"}
+              width={30}
+              height={30}
+            />
+          }
         />
       </Wrapper>
     </>

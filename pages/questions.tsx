@@ -201,6 +201,14 @@ const QuizPage = ({
           id="Frageseiten-Button"
           buttonUrl="result"
           content="Weiter zum Ergebnis"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/result-icon.svg"}
+              description={"forward icon"}
+              width={30}
+              height={30}
+            />
+          }
         />
       ) : null}
     </div>
