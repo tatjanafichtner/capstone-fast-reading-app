@@ -2,26 +2,42 @@
   {
     "cardNumber": 1,
     "question": "Um wieviel Uhr ist die Küchenuhr stehen geblieben?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
+    "correct_answer": "Um halb drei Uhr nachts",
+    "incorrect_answers": [
+      "Vor dem Abendessen",
+      "Um 3:30 Uhr",
+      "Nach dem Mittagessen"
+    ]
   },
   {
     "cardNumber": 2,
     "question": "Wie sah die Uhr aus?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
+    "correct_answer": "Weiß mit blauen Zahlen",
+    "incorrect_answers": [
+      "Tellerrund mit römischen Zahlen",
+      "Blau und Tellergroß",
+      "Blau mit Zeigern aus Blech"
+    ]
   },
   {
     "cardNumber": 3,
-    "question": "Wer saß mit dem Mann auf der Bank?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
+    "question": "Wer saß mit direkt neben dem Mann auf der Bank?",
+    "correct_answer": "Eine Frau mit Kinderwagen und ein Mann",
+    "incorrect_answers": [
+      "Zwei Männer",
+      "Zwei Frauen, davon eine mit Kinderwagen",
+      "Eine Frau mit Kind"
+    ]
   },
   {
     "cardNumber": 4,
     "question": "Wie alt war der Mann?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
+    "correct_answer": "Etwa 20 Jahre alt",
+    "incorrect_answers": [
+      "Etwa 60 Jahre alt",
+      "Ein alter Greis",
+      "Ein Mann mittleren Alters"
+    ]
   },
   {
     "cardNumber": 5,
