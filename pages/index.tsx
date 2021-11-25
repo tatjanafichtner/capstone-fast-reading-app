@@ -3,6 +3,7 @@ import { LinkedButton } from "../components/LinkedButton";
 import styled from "styled-components";
 import Image from "next/image";
 import { ButtonIcon } from "../components/ButtonIcon";
+import { FlyingBook } from "../components/FlyingBook";
 
 type HomeProps = {
   setStartingTime: (startingTime: number) => void;
@@ -19,18 +20,21 @@ const Home = ({ setStartingTime }: HomeProps) => {
 
       <main>
         <Wrapper>
-          <FlyingBook>
-            <Image
-              src="/pics/bluebook.svg"
-              alt="blue open book"
-              className="flying-book"
-              width={117}
-              height={117}
-            />
-          </FlyingBook>
+          <FlyingBook
+            imgLocation="right"
+            description="blue open book on the right side"
+            imageWidth={117}
+            imageHeight={117}
+          />
           <h1>
             Wie schnell <br /> kannst du lesen?
           </h1>
+          <FlyingBook
+            imgLocation="left"
+            description="blue open book on the left side"
+            imageWidth={117}
+            imageHeight={117}
+          />
           <p>
             Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher <br />
             und kann sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
@@ -81,12 +85,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-`;
-
-const FlyingBook = styled.div`
-  position: fixed;
-  top: 0px;
-  right: 0px;
 `;
 
 const BookStack = styled.div`

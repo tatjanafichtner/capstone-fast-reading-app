@@ -2,6 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "../components/LinkedButton";
 import { ButtonIcon } from "../components/ButtonIcon";
+import { FlyingBook } from "../components/FlyingBook";
 import ConfettiGenerator from "confetti-js";
 import { MutableRefObject, useEffect, useRef } from "react";
 
@@ -41,14 +42,27 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
 
   if (isSuccessful) {
     return (
-      <>
+      <StyledPage>
         <StyledCanvas ref={canvasRef as any} />
+        <FlyingBook
+          imgLocation="right"
+          description="blue open book on the right side"
+          imageWidth={117}
+          imageHeight={117}
+        />
+
         <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
         <StyledImage
           alt="speed reader picture"
           src="/pics/Schnellleser.jpg"
           width={300}
           height={300}
+        />
+        <FlyingBook
+          imgLocation="left"
+          description="blue open book on the left side"
+          imageWidth={117}
+          imageHeight={117}
         />
 
         <p>
@@ -75,11 +89,17 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
             />
           }
         />
-      </>
+      </StyledPage>
     );
   } else if (result > minimumValueMediumReader) {
     return (
-      <>
+      <StyledPage>
+        <FlyingBook
+          imgLocation="right"
+          description="blue open book on the right side"
+          imageWidth={117}
+          imageHeight={117}
+        />
         <h1>
           Dein Lesevermögen ist durchschnittlich. <br />
           Ein ordentliches Ergebnis!
@@ -89,6 +109,12 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           src="/pics/Durchschnittsleser.jpg"
           width={300}
           height={300}
+        />
+        <FlyingBook
+          imgLocation="left"
+          description="blue open book on the left side"
+          imageWidth={117}
+          imageHeight={117}
         />
         <p>
           Lesegeschwindigkeit:{" "}
@@ -114,11 +140,17 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
             />
           }
         />
-      </>
+      </StyledPage>
     );
   } else {
     return (
       <StyledPage>
+        <FlyingBook
+          imgLocation="right"
+          description="blue open book on the right side"
+          imageWidth={117}
+          imageHeight={117}
+        />
         <h1>
           Na, da geht noch was! <br /> Du liest langsamer als der Durchschnitt.{" "}
           <br />
@@ -128,6 +160,12 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           src="/pics/LangsamerLeser.jpg"
           width={300}
           height={300}
+        />
+        <FlyingBook
+          imgLocation="left"
+          description="blue open book on the left side"
+          imageWidth={117}
+          imageHeight={117}
         />
         <p>
           Lesegeschwindigkeit:{" "}
