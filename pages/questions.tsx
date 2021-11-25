@@ -186,41 +186,7 @@ const QuizPage = ({
   _______________________________________________________________________________________
   */
   return (
-    <div className="quiz-page-wrapper">
-      <h1>Wie gut erinnerst du dich?</h1>
-      {questions.length === 0 ? (
-        <QuizButton
-          onClick={startQuiz}
-          content="Quiz starten"
-          elementAfter="/pics/forward-icon.svg"
-        />
-      ) : null}
-      {!gameOver ? <p>Punktzahl: {score}</p> : null}
-      {!gameOver ? renderedCards[cardNumber - 1] : null}
-      {!gameOver &&
-      userAnswers.length === cardNumber &&
-      cardNumber !== questions.length ? (
-        <QuizButton
-          onClick={showNextQuestion}
-          content="Nächste Frage"
-          elementAfter="/pics/next.svg"
-        />
-      ) : null}
-      {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
-        <LinkedButton
-          id="Frageseiten-Button"
-          buttonUrl="result"
-          content="Weiter zum Ergebnis"
-          elementAfter={
-            <ButtonIcon
-              source={"/pics/result-icon.svg"}
-              description={"forward icon"}
-              width={30}
-              height={30}
-            />
-          }
-        />
-      ) : null}
+    <>
       <BookStack>
         <Image
           src="/pics/bookstack.svg"
@@ -230,23 +196,59 @@ const QuizPage = ({
           height={295}
         />
       </BookStack>
-    </div>
+      <div className="quiz-page-wrapper">
+        <h1>Wie gut erinnerst du dich?</h1>
+        {questions.length === 0 ? (
+          <QuizButton
+            onClick={startQuiz}
+            content="Quiz starten"
+            elementAfter={
+              <ButtonIcon
+                source={"/pics/forward-icon.svg"}
+                description={"forward icon"}
+                width={30}
+                height={30}
+              />
+            }
+          />
+        ) : null}
+        {!gameOver ? <p>Punktzahl: {score}</p> : null}
+        {!gameOver ? renderedCards[cardNumber - 1] : null}
+        {!gameOver &&
+        userAnswers.length === cardNumber &&
+        cardNumber !== questions.length ? (
+          <QuizButton
+            onClick={showNextQuestion}
+            content="Nächste Frage"
+            elementAfter={
+              <ButtonIcon
+                source={"/pics/next.svg"}
+                description={"forward icon"}
+                width={30}
+                height={30}
+              />
+            }
+          />
+        ) : null}
+        {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
+          <LinkedButton
+            id="Frageseiten-Button"
+            buttonUrl="result"
+            content="Weiter zum Ergebnis"
+            elementAfter={
+              <ButtonIcon
+                source={"/pics/result-icon.svg"}
+                description={"forward icon"}
+                width={30}
+                height={30}
+              />
+            }
+          />
+        ) : null}
+      </div>
+    </>
   );
 };
-
-const StyledButton = styled.button`
-  all: unset;
-  padding: 0.5rem;
-  border-radius: 10px;
-  background-color: var(--custom-color-blue);
-  color: var(--custom-color-white);
-  font-family: "Amatic SC";
-  font-size: 30px;
-  cursor: pointer;
-  &:active {
-    box-shadow: 5px 5px 5px lightslategrey;
-  }
-`;
 
 const BookStack = styled.div`
   position: fixed;

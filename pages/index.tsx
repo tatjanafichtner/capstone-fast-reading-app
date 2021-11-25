@@ -19,22 +19,35 @@ const Home = ({ setStartingTime }: HomeProps) => {
       </Head>
 
       <main>
-        <Wrapper>
-          <FlyingBook
-            imgLocation="right"
-            description="blue open book on the right side"
-            imageWidth={117}
-            imageHeight={117}
+        <FlyingBook
+          imgLocation="left"
+          description="blue open book on the left side"
+          className="flying-book-left"
+          imageWidth={117}
+          imageHeight={117}
+        />
+        <FlyingBook
+          imgLocation="right"
+          description="blue open book on the right side"
+          className="flying-book-right"
+          imageWidth={117}
+          imageHeight={117}
+        />
+        <BookStack>
+          <Image
+            src="/pics/bookstack.svg"
+            alt="stack of colourful books"
+            className="book-stack"
+            width={287}
+            height={295}
           />
+        </BookStack>
+
+        <Wrapper>
           <h1>
             Wie schnell <br /> kannst du lesen?
           </h1>
-          <FlyingBook
-            imgLocation="left"
-            description="blue open book on the left side"
-            imageWidth={117}
-            imageHeight={117}
-          />
+
           <p>
             Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher <br />
             und kann sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
@@ -57,15 +70,6 @@ const Home = ({ setStartingTime }: HomeProps) => {
               setStartingTime(Date.now());
             }}
           />
-          <BookStack>
-            <Image
-              src="/pics/bookstack.svg"
-              alt="stack of colourful books"
-              className="book-stack"
-              width={287}
-              height={295}
-            />
-          </BookStack>
         </Wrapper>
       </main>
     </>
@@ -79,12 +83,22 @@ STYLING
 */
 
 const Wrapper = styled.div`
+  isolation: isolate;
+
   padding: 1rem;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
+  h1 {
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
+  }
+  p {
+    backdrop-filter: blur(5px);
+    border-radius: 25px;
+  }
 `;
 
 const BookStack = styled.div`

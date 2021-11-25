@@ -67,17 +67,15 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 };
 
 const StyledCard = styled.article`
-  margin: 1rem;
+  margin: 1rem 0 1rem 0;
   padding: 2rem;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  max-width: 80%;
   border-radius: 10px;
   background-color: rgba(250, 236, 156, 0.53);
-  width: fit-content;
   text-align: left;
-  justify-content: left;
+  justify-content: flex-start;
   float: left;
   & h2 {
     margin: 0 !important;
@@ -88,8 +86,7 @@ const StyledCard = styled.article`
   & div {
     display: flex;
     flex-direction: column;
-    margin: 1rem auto;
-    width: 50%;
+    margin-top: 1rem;
     gap: 0.5rem;
   }
 `;
@@ -98,7 +95,7 @@ const StyledButton = styled.button<{
   showAsCorrect: boolean;
   showAsSelected: boolean;
 }>`
-  float: left;
+  word-wrap: wrap;
   border: none;
   border-radius: 10px;
   background: ${(props) =>
@@ -114,7 +111,8 @@ const StyledButton = styled.button<{
 
 const TitleContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row !important;
   flex-wrap: wrap;
-  margin: 0;
+  margin: 0 !important;
 `;

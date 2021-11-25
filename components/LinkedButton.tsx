@@ -30,14 +30,11 @@ export const LinkedButton = ({
   );
 };
 
-/*
-########
-STYLING
-########
-*/
-
 const ButtonLink = styled.a`
   all: unset;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
   padding: 0.5rem;
   border-radius: 10px;
   background-color: var(--custom-color-blue);

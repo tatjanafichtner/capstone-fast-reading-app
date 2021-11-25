@@ -13,7 +13,7 @@ type ResultProps = {
 };
 
 const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
-  const readingVelocity = (921 / calculatedTime).toFixed(0);
+  const readingVelocity = parseInt((921 / calculatedTime).toFixed(0));
   const textRemembrance = (score * 100) / countOfQuestions;
   const result = (readingVelocity * textRemembrance) / 100;
 
@@ -66,15 +66,18 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         />
 
         <p>
-          Lesegeschwindigkeit:{" "}
+          Lesegeschwindigkeit:
+          <br />
           <StyledResult>{readingVelocity ?? 0} Wörter pro Minute</StyledResult>
         </p>
         <p>
-          Texterinnerung:{" "}
+          Texterinnerung:
+          <br />
           <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
         </p>
         <p>
-          Effektivgeschwindigkeit: <StyledResult>{result ?? 0}</StyledResult>
+          Effektivgeschwindigkeit: <br />
+          <StyledResult>{result ?? 0}</StyledResult>
         </p>
         <LinkedButton
           buttonUrl=""
@@ -101,7 +104,8 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           imageHeight={117}
         />
         <h1>
-          Dein Lesevermögen ist durchschnittlich. <br />
+          Dein Lesevermögen ist durchschnittlich.
+          <br />
           Ein ordentliches Ergebnis!
         </h1>
         <StyledImage
@@ -117,15 +121,18 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           imageHeight={117}
         />
         <p>
-          Lesegeschwindigkeit:{" "}
+          Lesegeschwindigkeit:
+          <br />
           <StyledResult>{readingVelocity} Wörter pro Minute</StyledResult>
         </p>
         <p>
-          Texterinnerung:{" "}
+          Texterinnerung:
+          <br />
           <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
         </p>
         <p>
-          Effektivgeschwindigkeit: <StyledResult>{result ?? 0}</StyledResult>
+          Effektivgeschwindigkeit: <br />
+          <StyledResult>{result ?? 0}</StyledResult>
         </p>
         <LinkedButton
           buttonUrl=""
@@ -168,18 +175,18 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           imageHeight={117}
         />
         <p>
-          Lesegeschwindigkeit:{" "}
+          Lesegeschwindigkeit:
+          <br />
           <StyledResult>{readingVelocity} Wörter pro Minute</StyledResult>
         </p>
         <p>
-          Texterinnerung:{" "}
+          Texterinnerung:
+          <br />
           <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
         </p>
         <p>
-          Effektivgeschwindigkeit: <StyledResult>{result ?? 0}</StyledResult>
-        </p>
-        <p>
-          Effektivgeschwindigkeit: <StyledResult> {result ?? 0}</StyledResult>
+          Effektivgeschwindigkeit: <br />
+          <StyledResult>{result ?? 0}</StyledResult>
         </p>
         <LinkedButton
           buttonUrl=""
@@ -209,9 +216,13 @@ STYLING
 
 const StyledPage = styled.div`
   display: flex;
+  padding: 1rem;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  .h1 {
+    text-align: center;
+  }
 `;
 
 const StyledImage = styled(Image)`

@@ -6,6 +6,7 @@ export type FlyingBookProps = {
   description: string;
   imageWidth: number;
   imageHeight: number;
+  position: string;
 };
 
 export const FlyingBook = ({
@@ -15,11 +16,10 @@ export const FlyingBook = ({
   imageHeight,
 }: FlyingBookProps) => {
   return (
-    <FlyingBookStyle>
+    <FlyingBookStyle position={imgLocation}>
       <Image
         src={"/pics/flying-book-" + imgLocation + ".svg"}
         alt={description}
-        className={"flying-book-" + imgLocation}
         width={imageWidth}
         height={imageHeight}
       />
@@ -27,14 +27,8 @@ export const FlyingBook = ({
   );
 };
 
-const FlyingBookStyle = styled.div`
-  position: fixed;
-  .flying-book-left {
-    top: 0px;
-    left: 0px;
-  }
-  .flying-book-right {
-    top: 0px;
-    right: 0px;
-  }
+const FlyingBookStyle = styled.div<{ position?: "left" | "right" }>`
+  position: absolute;
+  z-index: 1;
+  ${(prop) => (prop.position === "left" ? "left:0; top:100px;" : "right:0;")}
 `;
