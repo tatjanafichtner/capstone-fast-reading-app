@@ -16,6 +16,7 @@ import quiz from "../assets/quiz.json";
 //Utils
 import { shuffleAnswerArray } from "../utils/shuffle.js";
 import styled from "styled-components";
+import Image from "next/image";
 import "animate.css";
 
 /*
@@ -220,6 +221,15 @@ const QuizPage = ({
           }
         />
       ) : null}
+      <BookStack>
+        <Image
+          src="/pics/bookstack.svg"
+          alt="stack of colourful books"
+          className="book-stack"
+          width={287}
+          height={295}
+        />
+      </BookStack>
     </div>
   );
 };
@@ -236,6 +246,12 @@ const StyledButton = styled.button`
   &:active {
     box-shadow: 5px 5px 5px lightslategrey;
   }
+`;
+
+const BookStack = styled.div`
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
 `;
 
 export default QuizPage;
