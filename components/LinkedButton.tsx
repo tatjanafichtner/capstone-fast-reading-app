@@ -45,4 +45,7 @@ const ButtonLink = styled.a`
   font-family: "Amatic SC";
   font-size: 30px;
   cursor: pointer;
+  &:active {
+    box-shadow: 5px 5px 5px lightslategrey;
+  }
 `;
