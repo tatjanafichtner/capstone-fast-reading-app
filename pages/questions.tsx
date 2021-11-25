@@ -10,6 +10,7 @@ import { useState } from "react";
 import { LinkedButton } from "../components/LinkedButton";
 import { QuestionCard } from "../components/QuestionCard";
 import { ButtonIcon } from "../components/ButtonIcon";
+import { QuizButton } from "../components/QuizButton";
 //Assets (JSON)
 import quiz from "../assets/quiz.json";
 //Utils
@@ -187,14 +188,22 @@ const QuizPage = ({
     <div className="quiz-page-wrapper">
       <h1>Wie gut erinnerst du dich?</h1>
       {questions.length === 0 ? (
-        <StyledButton onClick={startQuiz}>Quiz starten</StyledButton>
+        <QuizButton
+          onClick={startQuiz}
+          content="Quiz starten"
+          elementAfter="/pics/forward-icon.svg"
+        />
       ) : null}
       {!gameOver ? <p>Punktzahl: {score}</p> : null}
       {!gameOver ? renderedCards[cardNumber - 1] : null}
       {!gameOver &&
       userAnswers.length === cardNumber &&
       cardNumber !== questions.length ? (
-        <StyledButton onClick={showNextQuestion}>Nächste Frage</StyledButton>
+        <QuizButton
+          onClick={showNextQuestion}
+          content="Nächste Frage"
+          elementAfter="/pics/next.svg"
+        />
       ) : null}
       {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
         <LinkedButton
