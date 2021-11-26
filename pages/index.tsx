@@ -91,11 +91,11 @@ const Wrapper = styled.div`
   align-items: center;
   text-align: center;
   h1 {
-    backdrop-filter: blur(5px);
+    //backdrop-filter: blur(5px);
     border-radius: 25px;
   }
   p {
-    backdrop-filter: blur(5px);
+    //backdrop-filter: blur(5px);
     border-radius: 25px;
   }
 `;
