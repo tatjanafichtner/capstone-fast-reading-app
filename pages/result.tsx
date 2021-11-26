@@ -50,20 +50,21 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
           <StyledImage
             alt="speed reader picture"
             src="/pics/Schnellleser.jpg"
-            width={300}
-            height={300}
+            width={200}
+            height={200}
           />
           <FlyingBook
             imgLocation="right"
             description="blue open book on the right side"
-            imageWidth={117}
-            imageHeight={117}
+            imageWidth={80}
+            imageHeight={80}
+            top={100}
           />
           <FlyingBook
             imgLocation="left"
             description="blue open book on the left side"
-            imageWidth={117}
-            imageHeight={117}
+            imageWidth={80}
+            imageHeight={80}
           />
         </div>
 
@@ -102,8 +103,8 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         <FlyingBook
           imgLocation="right"
           description="blue open book on the right side"
-          imageWidth={117}
-          imageHeight={117}
+          imageWidth={100}
+          imageHeight={100}
         />
         <h1>
           Dein Lesevermögen ist durchschnittlich.
@@ -119,8 +120,8 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         <FlyingBook
           imgLocation="left"
           description="blue open book on the left side"
-          imageWidth={117}
-          imageHeight={117}
+          imageWidth={100}
+          imageHeight={100}
         />
         <p>
           Lesegeschwindigkeit:
@@ -157,8 +158,8 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         <FlyingBook
           imgLocation="right"
           description="blue open book on the right side"
-          imageWidth={117}
-          imageHeight={117}
+          imageWidth={100}
+          imageHeight={100}
         />
         <h1>
           Na, da geht noch was! <br /> Du liest langsamer als der Durchschnitt.{" "}
@@ -173,8 +174,8 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         <FlyingBook
           imgLocation="left"
           description="blue open book on the left side"
-          imageWidth={117}
-          imageHeight={117}
+          imageWidth={100}
+          imageHeight={100}
         />
         <p>
           Lesegeschwindigkeit:
@@ -222,9 +223,7 @@ const StyledPage = styled.div`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  .h1 {
-    text-align: center;
-  }
+  text-align: center;
 `;
 
 const StyledImage = styled(Image)`

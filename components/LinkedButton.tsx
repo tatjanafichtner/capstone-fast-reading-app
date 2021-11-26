@@ -40,7 +40,7 @@ const ButtonLink = styled.a`
   background-color: var(--custom-color-blue);
   color: var(--custom-color-white);
   font-family: "Amatic SC";
-  font-size: 30px;
+  font-size: 1.5rem;
   cursor: pointer;
   &:active {
     box-shadow: 5px 5px 5px lightslategrey;

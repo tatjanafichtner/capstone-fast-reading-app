@@ -20,7 +20,7 @@ body {
   background-color: var(--custom-color-white);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 main {
@@ -33,7 +33,7 @@ h1,
 h2 {
   font-family: "Amatic SC";
   color: var(--custom-color-blue);
-  font-size: 40px;
+  font-size: 2rem;
 }
 
 p {

@@ -35,6 +35,6 @@ const FlyingBookStyle = styled.div<{
   position: absolute;
   z-index: 1;
   top: ${(props) => props.top}px;
-  left: ${(props) => (props.position === "left" ? "-20px" : "auto")};
+  left: ${(props) => (props.position === "left" ? "-10px" : "auto")};
   right: ${(props) => (props.position === "right" ? "-20px" : "auto")};
 `;

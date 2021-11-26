@@ -22,15 +22,15 @@ const Home = ({ setStartingTime }: HomeProps) => {
         <FlyingBook
           imgLocation="left"
           description="blue open book on the left side"
-          imageWidth={117}
-          imageHeight={117}
+          imageWidth={100}
+          imageHeight={100}
           top={100}
         />
         <FlyingBook
           imgLocation="right"
           description="blue open book on the right side"
-          imageWidth={117}
-          imageHeight={117}
+          imageWidth={100}
+          imageHeight={100}
         />
         <BookStack>
           <Image
@@ -46,7 +46,7 @@ const Home = ({ setStartingTime }: HomeProps) => {
           <h1>
             Wie schnell <br /> kannst du lesen?
           </h1>
-
+          <br />
           <p>
             Ein(e) <b>&quot;Schnellleser(in)&quot;</b> verschlingt Bücher <br />
             und kann sich trotzdem noch an Details erinnern. <br /> Eine echte{" "}
