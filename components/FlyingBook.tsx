@@ -6,7 +6,7 @@ export type FlyingBookProps = {
   description: string;
   imageWidth: number;
   imageHeight: number;
-  position: string;
+  top?: number;
 };
 
 export const FlyingBook = ({
@@ -14,9 +14,10 @@ export const FlyingBook = ({
   description,
   imageWidth,
   imageHeight,
+  top,
 }: FlyingBookProps) => {
   return (
-    <FlyingBookStyle position={imgLocation}>
+    <FlyingBookStyle position={imgLocation} top={top ?? 0}>
       <Image
         src={"/pics/flying-book-" + imgLocation + ".svg"}
         alt={description}
@@ -27,8 +28,13 @@ export const FlyingBook = ({
   );
 };
 
-const FlyingBookStyle = styled.div<{ position?: "left" | "right" }>`
+const FlyingBookStyle = styled.div<{
+  position?: "left" | "right";
+  top: number;
+}>`
   position: absolute;
   z-index: 1;
-  ${(prop) => (prop.position === "left" ? "left:0; top:100px;" : "right:0;")}
+  top: ${(props) => props.top}px;
+  left: ${(props) => (props.position === "left" ? "-20px" : "auto")};
+  right: ${(props) => (props.position === "right" ? "-20px" : "auto")};
 `;

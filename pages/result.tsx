@@ -44,26 +44,28 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
     return (
       <StyledPage>
         <StyledCanvas ref={canvasRef as any} />
-        <FlyingBook
-          imgLocation="right"
-          description="blue open book on the right side"
-          imageWidth={117}
-          imageHeight={117}
-        />
 
         <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
-        <StyledImage
-          alt="speed reader picture"
-          src="/pics/Schnellleser.jpg"
-          width={300}
-          height={300}
-        />
-        <FlyingBook
-          imgLocation="left"
-          description="blue open book on the left side"
-          imageWidth={117}
-          imageHeight={117}
-        />
+        <div style={{ position: "relative" }}>
+          <StyledImage
+            alt="speed reader picture"
+            src="/pics/Schnellleser.jpg"
+            width={300}
+            height={300}
+          />
+          <FlyingBook
+            imgLocation="right"
+            description="blue open book on the right side"
+            imageWidth={117}
+            imageHeight={117}
+          />
+          <FlyingBook
+            imgLocation="left"
+            description="blue open book on the left side"
+            imageWidth={117}
+            imageHeight={117}
+          />
+        </div>
 
         <p>
           Lesegeschwindigkeit:

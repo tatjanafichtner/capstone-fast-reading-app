@@ -22,14 +22,13 @@ const Home = ({ setStartingTime }: HomeProps) => {
         <FlyingBook
           imgLocation="left"
           description="blue open book on the left side"
-          className="flying-book-left"
           imageWidth={117}
           imageHeight={117}
+          top={100}
         />
         <FlyingBook
           imgLocation="right"
           description="blue open book on the right side"
-          className="flying-book-right"
           imageWidth={117}
           imageHeight={117}
         />
