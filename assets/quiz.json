@@ -38,41 +38,5 @@
       "Ein alter Greis",
       "Ein Mann mittleren Alters"
     ]
-  },
-  {
-    "cardNumber": 5,
-    "question": "Was ist vor der Unterhaltung auf der Bank passiert?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
-  },
-  {
-    "cardNumber": 6,
-    "question": "Was beschreibt der Autor als Paradies?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
-  },
-  {
-    "cardNumber": 7,
-    "question": "Wie reagiert der Mann, als er darauf angesprochen wird, dass er wohl alles verloren habe?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
-  },
-  {
-    "cardNumber": 8,
-    "question": "Wie endet die Geschichte?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
-  },
-  {
-    "cardNumber": 9,
-    "question": "Wie reagieren die anderen Menschen auf der Bank, als der Mann anfängt zu sprechen?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
-  },
-  {
-    "cardNumber": 10,
-    "question": "Was sagt die Mutter immer, wenn der Sohn nach Hause kommt?",
-    "correct_answer": "Antwort 1",
-    "incorrect_answers": ["Antwort 2", "Antwort 3", "Antwort 4"]
   }
 ]

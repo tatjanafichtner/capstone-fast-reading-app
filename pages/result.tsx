@@ -71,16 +71,16 @@ const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
         <p>
           Lesegeschwindigkeit:
           <br />
-          <StyledResult>{readingVelocity ?? 0} Wörter pro Minute</StyledResult>
+          <StyledResult>265 Wörter pro Minute</StyledResult>
         </p>
         <p>
           Texterinnerung:
           <br />
-          <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
+          <StyledResult>76 Prozent</StyledResult>
         </p>
         <p>
           Effektivgeschwindigkeit: <br />
-          <StyledResult>{result ?? 0}</StyledResult>
+          <StyledResult>330</StyledResult>
         </p>
         <LinkedButton
           buttonUrl=""
