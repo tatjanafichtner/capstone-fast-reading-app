@@ -1,31 +1,21 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { LinkedButton } from "../components/LinkedButton";
-import QuizPage from "./questions";
+import { ButtonIcon } from "../components/ButtonIcon";
+import { FlyingBook } from "../components/FlyingBook";
+import ConfettiGenerator from "confetti-js";
+import { MutableRefObject, useEffect, useRef } from "react";
 
 type ResultProps = {
   calculatedTime: number;
-  /* Caution: as stated in the app.tsx-file, calculatedTime is a decimal value which still has to be converted 
-  for a proper display of minutes or seconds */
+  score: number;
+  countOfQuestions: number;
 };
 
-const Result = ({ calculatedTime }: ResultProps) => {
-  // Berechnungen für die Lesegeschwindigkeit
-  const minutes = Math.floor(calculatedTime);
-  const seconds = Math.round(
-    (calculatedTime - Math.floor(calculatedTime)) * 60
-  );
-
-  // Berechnungen für die Effektivgeschwindigkeit
-  // ... ergibt sich aus Prozentzahl der Lesegeschwindigkeit und
-  // ... Prozentzahl der Punktzahl der Texterinnerung
-
-  const readingPerformanceResult = () => {
-    const readingVelocity = null; // tatsächliches Ergebnis geteilt durch Maximalwert
-    const textRemembrance = score / TOTAL_Questions; // Prozentzahl der richtigen Antworten
-    const result = (readingVelocity + textRemembrance) * 0.5;
-    return result;
-  };
+const Result = ({ calculatedTime, score, countOfQuestions }: ResultProps) => {
+  const readingVelocity = parseInt((921 / calculatedTime).toFixed(0));
+  const textRemembrance = (score * 100) / countOfQuestions;
+  const result = (readingVelocity * textRemembrance) / 100;
 
   /*
   _____________________________________________________________
@@ -33,89 +23,191 @@ const Result = ({ calculatedTime }: ResultProps) => {
   _____________________________________________________________
   */
 
-  const minimumValueSpeedReader = 0 // TO BE DEFINED!
-  const minimumValueMediumReader = 0 // TO BE DEFINED!
+  const minimumValueSpeedReader = 200;
+  const minimumValueMediumReader = 100;
 
-  if ( result > minimumValueSpeedReader ) {
-  return (
-    <>
-      <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
-      <StyledImage
-        alt="speed reader picture"
-        src="/public/Schnellleser.jpg"
-        width={200}
-        height={200}
-      />
-      <p>
-        Lesegeschwindigkeit: {minutes ? 0} {minutes === 1 ? "Minute" : "Minuten"}{" "}
-        und {seconds ? 0} {seconds === 1 ? "Sekunde" : "Sekunden"}
-      </p>
-      <p>
-        Texterinnerung: {score ? 0} von {TOTAL_QUESTIONS}{" "}
-      </p>
-      <p>Effektivgeschwindigkeit: {readingPerformanceResult ? 0}</p>
-      <LinkedButton
-        buttonUrl=""
-        content="Zurück zum Start"
-        id="ButtonResultPage"
-      />
-    </>
-  );
-}
-} else if ( result > minimumValueMediumReader) {
-  return (
-    <>
-      <h1>Dein Lesevermögen ist durchschnittlich. Ein ordentliches Ergebnis!</h1>
-      <StyledImage
-        alt="medium reader picture"
-        src="/public/Schnellleser.jpg" // Noch austauschen!
-        width={200}
-        height={200}
-      />
-      <p>
-        Lesegeschwindigkeit: {minutes ? 0} {minutes === 1 ? "Minute" : "Minuten"}{" "}
-        und {seconds ? 0} {seconds === 1 ? "Sekunde" : "Sekunden"}
-      </p>
-      <p>
-        Texterinnerung: {score ? 0} von {TOTAL_QUESTIONS}{" "}
-      </p>
-      <p>Effektivgeschwindigkeit: {readingPerformanceResult ? 0}</p>
-      <LinkedButton
-        buttonUrl=""
-        content="Zurück zum Start"
-        id="ButtonResultPage"
-      />
-    </>
-  );
+  const isSuccessful = true;
+
+  const canvasRef = useRef<MutableRefObject<HTMLCanvasElement>>();
+
+  useEffect(() => {
+    if (isSuccessful) {
+      const confettiSettings = { target: canvasRef.current };
+      const confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+
+      return () => confetti.clear();
+    }
+  }, [isSuccessful]);
+
+  if (isSuccessful) {
+    return (
+      <StyledPage>
+        <StyledCanvas ref={canvasRef as any} />
+
+        <h1>Glückwunsch, du bist ein(e) Schnellleser(in)!</h1>
+        <div style={{ position: "relative" }}>
+          <StyledImage
+            alt="speed reader picture"
+            src="/pics/Schnellleser.jpg"
+            width={200}
+            height={200}
+          />
+          <FlyingBook
+            imgLocation="right"
+            description="blue open book on the right side"
+            imageWidth={80}
+            imageHeight={80}
+            top={100}
+          />
+          <FlyingBook
+            imgLocation="left"
+            description="blue open book on the left side"
+            imageWidth={80}
+            imageHeight={80}
+          />
+        </div>
+
+        <p>
+          Lesegeschwindigkeit:
+          <br />
+          <StyledResult>265 Wörter pro Minute</StyledResult>
+        </p>
+        <p>
+          Texterinnerung:
+          <br />
+          <StyledResult>76 Prozent</StyledResult>
+        </p>
+        <p>
+          Effektivgeschwindigkeit: <br />
+          <StyledResult>330</StyledResult>
+        </p>
+        <LinkedButton
+          buttonUrl=""
+          content="Zurück zum Start"
+          id="ButtonResultPage"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/return-icon.svg"}
+              description={"return icon"}
+              width={30}
+              height={30}
+            />
+          }
+        />
+      </StyledPage>
+    );
+  } else if (result > minimumValueMediumReader) {
+    return (
+      <StyledPage>
+        <FlyingBook
+          imgLocation="right"
+          description="blue open book on the right side"
+          imageWidth={100}
+          imageHeight={100}
+        />
+        <h1>
+          Dein Lesevermögen ist durchschnittlich.
+          <br />
+          Ein ordentliches Ergebnis!
+        </h1>
+        <StyledImage
+          alt="medium reader picture"
+          src="/pics/Durchschnittsleser.jpg"
+          width={300}
+          height={300}
+        />
+        <FlyingBook
+          imgLocation="left"
+          description="blue open book on the left side"
+          imageWidth={100}
+          imageHeight={100}
+        />
+        <p>
+          Lesegeschwindigkeit:
+          <br />
+          <StyledResult>{readingVelocity} Wörter pro Minute</StyledResult>
+        </p>
+        <p>
+          Texterinnerung:
+          <br />
+          <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
+        </p>
+        <p>
+          Effektivgeschwindigkeit: <br />
+          <StyledResult>{result ?? 0}</StyledResult>
+        </p>
+        <LinkedButton
+          buttonUrl=""
+          content="Zurück zum Start"
+          id="ButtonResultPage"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/return-icon.svg"}
+              description={"return icon"}
+              width={30}
+              height={30}
+            />
+          }
+        />
+      </StyledPage>
+    );
+  } else {
+    return (
+      <StyledPage>
+        <FlyingBook
+          imgLocation="right"
+          description="blue open book on the right side"
+          imageWidth={100}
+          imageHeight={100}
+        />
+        <h1>
+          Na, da geht noch was! <br /> Du liest langsamer als der Durchschnitt.{" "}
+          <br />
+        </h1>
+        <StyledImage
+          alt="slow reader picture"
+          src="/pics/LangsamerLeser.jpg"
+          width={300}
+          height={300}
+        />
+        <FlyingBook
+          imgLocation="left"
+          description="blue open book on the left side"
+          imageWidth={100}
+          imageHeight={100}
+        />
+        <p>
+          Lesegeschwindigkeit:
+          <br />
+          <StyledResult>{readingVelocity} Wörter pro Minute</StyledResult>
+        </p>
+        <p>
+          Texterinnerung:
+          <br />
+          <StyledResult>{textRemembrance ?? 0} Prozent</StyledResult>
+        </p>
+        <p>
+          Effektivgeschwindigkeit: <br />
+          <StyledResult>{result ?? 0}</StyledResult>
+        </p>
+        <LinkedButton
+          buttonUrl=""
+          content="Zurück zum Start"
+          id="ButtonResultPage"
+          elementAfter={
+            <ButtonIcon
+              source={"/pics/return-icon.svg"}
+              description={"return icon"}
+              width={30}
+              height={30}
+            />
+          }
+        />
+      </StyledPage>
+    );
+  }
 };
-  
-} else {
-  return (
-    <>
-      <h1>Na, da geht noch was! Weiter so, und du schaffst die Durchschnittsgeschwindigkeit. </h1>
-      <StyledImage
-        alt="slow reader picture"
-        src="/public/Schnellleser.jpg" // Noch austauschen!
-        width={200}
-        height={200}
-      />
-      <p>
-        Lesegeschwindigkeit: {minutes ? 0} {minutes === 1 ? "Minute" : "Minuten"}{" "}
-        und {seconds ? 0} {seconds === 1 ? "Sekunde" : "Sekunden"}
-      </p>
-      <p>
-        Texterinnerung: {score ? 0} von {TOTAL_QUESTIONS}{" "}
-      </p>
-      <p>Effektivgeschwindigkeit: {readingPerformanceResult ? 0}</p>
-      <LinkedButton
-        buttonUrl=""
-        content="Zurück zum Start"
-        id="ButtonResultPage"
-      />
-    </>
-  );
-  
-} 
 
 export default Result;
 
@@ -125,6 +217,30 @@ STYLING
 ########
 */
 
+const StyledPage = styled.div`
+  display: flex;
+  padding: 1rem;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
 const StyledImage = styled(Image)`
-  border-radius: 100px;
+  border-radius: 50%;
+`;
+
+const StyledResult = styled.em`
+  color: var(--custom-color-green);
+  font-style: normal;
+`;
+
+const StyledCanvas = styled.canvas`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  pointer-events: none;
 `;

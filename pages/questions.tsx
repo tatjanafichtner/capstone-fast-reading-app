@@ -9,10 +9,15 @@ import { useState } from "react";
 //Components
 import { LinkedButton } from "../components/LinkedButton";
 import { QuestionCard } from "../components/QuestionCard";
+import { ButtonIcon } from "../components/ButtonIcon";
+import { QuizButton } from "../components/QuizButton";
 //Assets (JSON)
 import quiz from "../assets/quiz.json";
 //Utils
 import { shuffleAnswerArray } from "../utils/shuffle.js";
+import styled from "styled-components";
+import Image from "next/image";
+import "animate.css";
 
 /*
 #########
@@ -24,18 +29,27 @@ import { shuffleAnswerArray } from "../utils/shuffle.js";
 export type QuizInputProps = {
   cardNumber: number;
   question: string;
-  answers: any[]; // not true, is it? Could it be more specified?
   correct_answer: string;
   incorrect_answers: string[];
-  key: number;
 };
 
+//specifies the array of questions and randomized answers of every started Quiz
+type Question = QuizInputProps & { answers: string[] };
+
 // specifies what is returned when a user selects an answer on a QuestionCard
-export type AnswerObjectProps = {
+export type UserAnswer = {
   question: string;
-  answer: string;
-  correctAnswer: boolean;
-  correctAnswerName: string;
+  correctAnswer: string;
+  isCorrect: boolean;
+  answerSelected: string;
+};
+
+export type QuizPageProps = {
+  score: number;
+  addOneToScore: () => void;
+  resetScore: () => void;
+  setCountOfQuestions: (countOfQuestions: number) => void;
+  setAnimation: (animation: string) => void;
 };
 
 /*
@@ -44,10 +58,17 @@ export type AnswerObjectProps = {
 ##################
 */
 
-const TOTAL_QUESTIONS = quiz.length; // don't know why I need to use capital letters here?
+/* 
+_____________
+Preparations
+_____________
+*/
 
-export const randomizedAnswers = ({ answers }: QuizInputProps) => {
-  shuffleAnswerArray([...answers.incorrect_answers, answers.correct_answer]);
+export const randomizedAnswers = (
+  correct_answer: string,
+  incorrect_answers: string[]
+) => {
+  return shuffleAnswerArray([...incorrect_answers, correct_answer]) as string[];
 };
 
 /* 
@@ -55,18 +76,22 @@ _____________________________
 This is where the quiz starts
 _____________________________
 */
-const QuizPage = () => {
+
+const QuizPage = ({
+  score,
+  addOneToScore,
+  resetScore,
+  setCountOfQuestions,
+  setAnimation,
+}: QuizPageProps) => {
   /* 
   _____________
   Hooks needed
   _____________
   */
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [cardNumber, setCardNumber] = useState(1);
-  const [amountOfUserAnswers, setAmountOfUserAnswers] = useState<
-    AnswerObject[]
-  >([]);
-  const [score, setScore] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
   const [gameOver, setGameOver] = useState(true);
 
   /*
@@ -74,13 +99,22 @@ const QuizPage = () => {
   Starting function
   __________________
   */
-  const startQuiz = ({ question }: AnswerObjectProps) => {
+  const startQuiz = () => {
     setGameOver(false);
-    const newQuestion = [...(question + randomizedAnswers)];
-    setQuestions(newQuestion);
-    setScore(0);
-    setAmountOfUserAnswers([]);
-    setCardNumber(0);
+    const newQuestions = quiz.map((question) => {
+      return {
+        ...question,
+        answers: randomizedAnswers(
+          question.correct_answer,
+          question.incorrect_answers
+        ),
+      };
+    });
+    setQuestions(newQuestions);
+    setCountOfQuestions(newQuestions.length);
+    resetScore();
+    setUserAnswers([]);
+    setCardNumber(1);
   };
 
   /*
@@ -96,16 +130,17 @@ const QuizPage = () => {
       const isCorrect =
         questions[cardNumber - 1].correct_answer === answerSelected;
       if (isCorrect) {
-        setScore((previous) => previous + 1);
+        addOneToScore();
+        setAnimation("animate__animated animate__flash correct");
       }
       // Save answer in the array for user answers
       const answerObject = {
-        questions: questions[cardNumber - 1].question,
+        question: questions[cardNumber - 1].question,
         answerSelected,
         isCorrect,
         correctAnswer: questions[cardNumber - 1].correct_answer,
       };
-      setAmountOfUserAnswers((previous) => [...previous, answerObject]);
+      setUserAnswers((previous) => [...previous, answerObject]);
     }
   };
 
@@ -116,7 +151,7 @@ const QuizPage = () => {
   */
   const showNextQuestion = () => {
     const nextQuestion = cardNumber;
-    if (nextQuestion === TOTAL_QUESTIONS) {
+    if (nextQuestion === questions.length) {
       setGameOver(true);
     } else {
       setCardNumber(nextQuestion + 1);
@@ -128,21 +163,22 @@ const QuizPage = () => {
   Building of single rendered QuestionCards
   __________________________________________
   */
-  const renderedCards = quiz.map(({ cardNumber, question }) => {
-    return (
-      <QuestionCard
-        key={cardNumber}
-        cardNumber={cardNumber}
-        totalQuestions={TOTAL_QUESTIONS}
-        question={question}
-        answers={randomizedAnswers}
-        amountOfUserAnswers={
-          amountOfUserAnswers ? amountOfUserAnswers[cardNumber - 1] : undefined
-        }
-        callback={checkAnswer}
-      />
-    );
-  });
+  const renderedCards = questions.map(
+    ({ cardNumber, question, answers }, index) => {
+      return (
+        <QuestionCard
+          key={cardNumber}
+          cardNumber={cardNumber}
+          totalQuestions={questions.length}
+          question={question}
+          answers={answers}
+          amountOfAnswers={userAnswers.length}
+          onSelectAnswer={checkAnswer}
+          userAnswer={userAnswers[index]}
+        />
+      );
+    }
+  );
 
   /*
   _______________________________________________________________________________________
@@ -151,29 +187,73 @@ const QuizPage = () => {
   */
   return (
     <>
-      <h1>Wie gut erinnerst du dich?</h1>
-
-      {gameOver || amountOfUserAnswers.length === TOTAL_QUESTIONS ? (
-        <button onClick={startQuiz}>Quiz starten</button>
-      ) : null}
-
-      {!gameOver ? <p>Punktzahl: {score}</p> : null}
-
-      {!gameOver ? { renderedCards } : null}
-
-      {!gameOver &&
-      amountOfUserAnswers.length === cardNumber &&
-      cardNumber !== TOTAL_QUESTIONS - 1 ? (
-        <button onClick={showNextQuestion}>Nächste Frage</button>
-      ) : null}
-
-      <LinkedButton
-        id="Frageseiten-Button"
-        buttonUrl="result"
-        content="Weiter zum Ergebnis"
-      />
+      <BookStack>
+        <Image
+          src="/pics/bookstack.svg"
+          alt="stack of colourful books"
+          className="book-stack"
+          width={287}
+          height={295}
+        />
+      </BookStack>
+      <div className="quiz-page-wrapper">
+        <h1>Wie gut erinnerst du dich?</h1>
+        {questions.length === 0 ? (
+          <QuizButton
+            onClick={startQuiz}
+            content="Quiz starten"
+            elementAfter={
+              <ButtonIcon
+                source={"/pics/forward-icon.svg"}
+                description={"forward icon"}
+                width={30}
+                height={30}
+              />
+            }
+          />
+        ) : null}
+        {!gameOver ? <p>Punktzahl: {score}</p> : null}
+        {!gameOver ? renderedCards[cardNumber - 1] : null}
+        {!gameOver &&
+        userAnswers.length === cardNumber &&
+        cardNumber !== questions.length ? (
+          <QuizButton
+            onClick={showNextQuestion}
+            content="Nächste Frage"
+            elementAfter={
+              <ButtonIcon
+                source={"/pics/next.svg"}
+                description={"forward icon"}
+                width={30}
+                height={30}
+              />
+            }
+          />
+        ) : null}
+        {userAnswers.length === questions.length && userAnswers.length !== 0 ? (
+          <LinkedButton
+            id="Frageseiten-Button"
+            buttonUrl="result"
+            content="Weiter zum Ergebnis"
+            elementAfter={
+              <ButtonIcon
+                source={"/pics/result-icon.svg"}
+                description={"forward icon"}
+                width={30}
+                height={30}
+              />
+            }
+          />
+        ) : null}
+      </div>
     </>
   );
 };
+
+const BookStack = styled.div`
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+`;
 
 export default QuizPage;

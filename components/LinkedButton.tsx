@@ -5,7 +5,8 @@ import { MouseEventHandler } from "react";
 export type ButtonProps = {
   buttonUrl: string;
   content: string;
-  icon?: string;
+  elementBefore?: any;
+  elementAfter?: any;
   id: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
@@ -13,31 +14,35 @@ export type ButtonProps = {
 export const LinkedButton = ({
   buttonUrl,
   content,
-  icon,
+  elementBefore,
+  elementAfter,
   id,
   onClick,
 }: ButtonProps) => {
   return (
     <Link href={`/${buttonUrl}`} passHref>
       <ButtonLink id={id} onClick={onClick}>
+        {elementBefore}
         {content}
-        {icon}
+        {elementAfter}
       </ButtonLink>
     </Link>
   );
 };
 
-/*
-########
-STYLING
-########
-*/
-
 const ButtonLink = styled.a`
   all: unset;
-  padding: 3px;
-  border-radius: 50;
-  width: 1rem;
-  background-color: hotpink;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: var(--custom-color-blue);
+  color: var(--custom-color-white);
+  font-family: "Amatic SC";
+  font-size: 1.5rem;
   cursor: pointer;
+  &:active {
+    box-shadow: 5px 5px 5px lightslategrey;
+  }
 `;

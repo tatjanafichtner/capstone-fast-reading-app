@@ -1,16 +1,52 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+  --custom-color-white: #f8f5e4;
+  --custom-color-blue: #94c6d6;
+  --custom-color-green: #bad8bc;
+  --custom-color-orange: #f5b346;
+  --custom-color-grey: #34484c;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
+  z-index: -10;
+  padding: 0;
+  margin: 0;
+  background-color: var(--custom-color-white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1,
+h2 {
+  font-family: "Amatic SC";
+  color: var(--custom-color-blue);
+  font-size: 2rem;
+}
+
+p {
+  color: var(--custom-color-grey);
+}
+
+.quiz-page-wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: transparent;
+  isolation: isolate;
+  overflow-x: hidden;
 }
